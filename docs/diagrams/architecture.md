@@ -1,0 +1,74 @@
+# Arquitectura del Sistema
+
+```mermaid
+flowchart LR
+    subgraph Frontend [Angular Frontend]
+      NAV[Navbar]
+      HOME[Home]
+      PROD[Products]
+      PDET[Product Detail]
+      CART[Cart]
+      ORD[Orders]
+      CHAT[Chatbot Component]
+      RESV[Reservations Component]
+    end
+
+    subgraph Backend [Node.js/Express Backend]
+      RT_AUTH[/routes/auth/]
+      RT_PROD[/routes/products/]
+      RT_CART[/routes/cart/]
+      RT_ORD[/routes/orders/]
+      RT_CHAT[/routes/chatbot/]
+      RT_RESV[/routes/reservations/]
+
+      CTRL_AUTH[AuthController]
+      CTRL_PROD[ProductController]
+      CTRL_CART[CartController]
+      CTRL_ORD[OrderController]
+      CTRL_CHAT[ChatbotController]
+      CTRL_RESV[ReservationController]
+
+      MW_AUTH[(auth middleware)]
+      MW_ADMIN[(adminAuth middleware)]
+    end
+
+    subgraph Database [MySQL]
+      TB_USERS[(users)]
+      TB_PRODUCTS[(products)]
+      TB_CARTS[(carts)]
+      TB_ORDERS[(orders)]
+      TB_CHATBOT[(chatbots)]
+      TB_RESV[(reservations)]
+    end
+
+    NAV --> HOME
+    NAV --> PROD
+    NAV --> CART
+    NAV --> ORD
+    NAV --> CHAT
+    NAV --> RESV
+
+    CHAT -->|HTTP| RT_CHAT
+    RESV -->|HTTP| RT_RESV
+    PROD -->|HTTP| RT_PROD
+    CART -->|HTTP| RT_CART
+    ORD -->|HTTP| RT_ORD
+
+    RT_CHAT --> MW_AUTH
+    RT_RESV --> MW_AUTH
+    RT_RESV --> MW_ADMIN
+
+    RT_AUTH --> CTRL_AUTH
+    RT_PROD --> CTRL_PROD
+    RT_CART --> CTRL_CART
+    RT_ORD --> CTRL_ORD
+    RT_CHAT --> CTRL_CHAT
+    RT_RESV --> CTRL_RESV
+
+    CTRL_AUTH --> TB_USERS
+    CTRL_PROD --> TB_PRODUCTS
+    CTRL_CART --> TB_CARTS
+    CTRL_ORD --> TB_ORDERS
+    CTRL_CHAT --> TB_CHATBOT
+    CTRL_RESV --> TB_RESV
+```

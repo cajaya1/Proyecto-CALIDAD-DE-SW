@@ -1,0 +1,89 @@
+classDiagram
+    class AuthController {
+      +login(req,res)
+      +register(req,res)
+    }
+    class ProductController {
+      +getAll(req,res)
+      +getById(req,res)
+    }
+    class CartController {
+      +addItem(req,res)
+      +getCart(req,res)
+    }
+    class OrderController {
+      +create(req,res)
+      +getUserOrders(req,res)
+    }
+    class ChatbotController {
+      +createMessage(req,res)
+      +getChatHistory(req,res)
+      +getChatStats(req,res)
+      +markAsResolved(req,res)
+      -detectIntent(text)
+      -generateResponse(intent,text)
+    }
+    class ReservationController {
+      +createReservation(req,res)
+      +getUserReservations(req,res)
+      +getAllReservations(req,res)
+      +getReservationById(req,res)
+      +updateReservationStatus(req,res)
+      +cancelReservation(req,res)
+      +getReservationStats(req,res)
+    }
+
+    class User {
+      +id: number
+      +username: string
+      +role: string
+    }
+    class Product {
+      +id: number
+      +name: string
+      +price: number
+      +stock: number
+      +category: string
+    }
+    class Cart {
+      +id: number
+      +userId: number
+      +productId: number
+      +quantity: number
+    }
+    class Order {
+      +id: number
+      +userId: number
+      +total: number
+      +status: string
+    }
+    class Chatbot {
+      +id: number
+      +userMessage: string
+      +botResponse: string
+      +intent: string
+      +resolved: boolean
+      +userId: number
+    }
+    class Reservation {
+      +id: number
+      +userId: number
+      +productId: number
+      +quantity: number
+      +status: string
+      +reservedAt: Date
+      +expiresAt: Date
+    }
+
+    AuthController --> User
+    ProductController --> Product
+    CartController --> Cart
+    OrderController --> Order
+    ChatbotController --> Chatbot
+    ReservationController --> Reservation
+
+    Reservation --> User : userId
+    Reservation --> Product : productId
+    Cart --> User : userId
+    Cart --> Product : productId
+    Order --> User : userId

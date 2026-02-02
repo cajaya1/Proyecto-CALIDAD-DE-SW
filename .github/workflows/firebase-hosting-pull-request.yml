@@ -1,0 +1,35 @@
+name: Deploy to Firebase Hosting on Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  build_and_preview:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tennis-frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Frontend Dependencies
+        run: npm install
+
+      - name: Build Angular App
+        run: npm run build:prod
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PROYECTOTENNIS_6B63B }}
+          projectId: proyectotennis-6b63b
+          channelId: github-pr-${{ github.event.pull_request.number }}
+          entryPoint: tennis-frontend

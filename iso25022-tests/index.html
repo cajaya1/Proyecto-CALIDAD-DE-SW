@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO 25022 - Tennis Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .header .description {
+            font-size: 1em;
+            opacity: 0.85;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section p {
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .card .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #1e3a8a;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #6b7280;
+            font-size: 0.95em;
+            margin: 0;
+        }
+
+        .features {
+            background: #f9fafb;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .features h3 {
+            color: #1e3a8a;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            color: #374151;
+            transition: all 0.3s ease;
+        }
+
+        .features li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .features li::before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-section h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            opacity: 0.95;
+            color: white;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .info-box h4 {
+            color: #1e3a8a;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box p {
+            color: #374151;
+            margin: 0;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 5px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 ISO 25022</h1>
+            <div class="subtitle">Pruebas de Calidad en Uso</div>
+            <div class="subtitle">Tennis Store</div>
+            <div class="description">
+                Sistema completo de evaluación de calidad basado en estándares internacionales
+            </div>
+            <div style="margin-top: 20px;">
+                <span class="badge">ISO/IEC 25022:2016</span>
+                <span class="badge">4 Categorías</span>
+                <span class="badge">14 Métricas</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>🎯 Acceso Rápido</h2>
+                <div class="cards-grid">
+                    <a href="reports/iso25022-report.html" class="card pulse">
+                        <div class="icon">📈</div>
+                        <h3>Ver Reporte</h3>
+                        <p>Resultados de las pruebas ejecutadas</p>
+                    </a>
+
+                    <a href="guia-iso25022.html" class="card">
+                        <div class="icon">📘</div>
+                        <h3>Guía ISO 25022</h3>
+                        <p>Información sobre el estándar</p>
+                    </a>
+
+                    <a href="README.md" class="card">
+                        <div class="icon">📖</div>
+                        <h3>Documentación</h3>
+                        <p>Guía técnica completa</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="features">
+                    <h3>✨ Categorías Evaluadas</h3>
+                    <ul>
+                        <li><strong>🎯 Efectividad:</strong> Capacidad para completar tareas con precisión</li>
+                        <li><strong>⚡ Eficiencia:</strong> Uso óptimo de recursos y tiempo de respuesta</li>
+                        <li><strong>😊 Satisfacción:</strong> Cumplimiento de necesidades del usuario</li>
+                        <li><strong>🛡️ Ausencia de Riesgo:</strong> Seguridad y confiabilidad del sistema</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="info-box">
+                    <h4>
+                        <span>💡</span>
+                        <span>¿Qué es la ISO 25022?</span>
+                    </h4>
+                    <p>
+                        La ISO/IEC 25022:2016 es un estándar internacional que proporciona métricas para medir 
+                        la calidad en uso de productos de software. Define cómo evaluar la efectividad, eficiencia, 
+                        satisfacción y ausencia de riesgo desde la perspectiva del usuario final.
+                    </p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h3>🚀 Ejecutar Nuevas Pruebas</h3>
+                <p>Ejecuta las pruebas desde la línea de comandos para generar un nuevo reporte</p>
+                <div style="background: rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <code style="color: #fbbf24; font-size: 1.1em; font-family: monospace;">
+                        cd iso25022-tests && npm test
+                    </code>
+                </div>
+                <p style="font-size: 0.95em; opacity: 0.9;">
+                    O usa: <code style="background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px;">npm run test:html</code> 
+                    para abrir el reporte automáticamente
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>📊 Métricas Implementadas (14 Total)</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div style="background: #f0fdf4; padding: 20px; border-radius: 10px; border-left: 5px solid #10b981;">
+                        <h4 style="color: #065f46; margin-bottom: 10px;">🎯 Efectividad (2)</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9em; color: #374151;">
+                            <li>✓ Completitud de Tareas</li>
+                            <li>✓ Efectividad de Funcionalidades</li>
+                        </ul>
+                    </div>
+                    <div style="background: #fffbeb; padding: 20px; border-radius: 10px; border-left: 5px solid #f59e0b;">
+                        <h4 style="color: #92400e; margin-bottom: 10px;">⚡ Eficiencia (4)</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9em; color: #374151;">
+                            <li>✓ Tiempo de Respuesta</li>
+                            <li>✓ Eficiencia de Procesamiento</li>
+                            <li>✓ Utilización de Recursos</li>
+                            <li>✓ Capacidad de Carga</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; border-left: 5px solid #3b82f6;">
+                        <h4 style="color: #1e3a8a; margin-bottom: 10px;">😊 Satisfacción (4)</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9em; color: #374151;">
+                            <li>✓ Utilidad Percibida</li>
+                            <li>✓ Confiabilidad Percibida</li>
+                            <li>✓ Facilidad de Uso</li>
+                            <li>✓ Completitud de Información</li>
+                        </ul>
+                    </div>
+                    <div style="background: #fef2f2; padding: 20px; border-radius: 10px; border-left: 5px solid #ef4444;">
+                        <h4 style="color: #991b1b; margin-bottom: 10px;">🛡️ Ausencia de Riesgo (4)</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9em; color: #374151;">
+                            <li>✓ Seguridad de Autenticación</li>
+                            <li>✓ Validación de Entrada</li>
+                            <li>✓ Manejo de Errores</li>
+                            <li>✓ Disponibilidad del Sistema</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3 style="color: white;">Sistema de Pruebas ISO 25022</h3>
+            <p>Tennis Store - Tienda de Sneakers Online</p>
+            <p style="font-size: 0.9em; margin-top: 15px;">
+                Basado en el estándar ISO/IEC 25022:2016 - Measurement of quality in use
+            </p>
+        </div>
+    </div>
+</body>
+</html>

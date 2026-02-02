@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía ISO 25022 - Tennis Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .nav-button {
+            background: #3b82f6;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #1e3a8a;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #2563eb;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            line-height: 1.8;
+            color: #374151;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 5px solid #3b82f6;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .category-card .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .category-card h4 {
+            color: #1e3a8a;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            font-size: 0.95em;
+            color: #4b5563;
+        }
+
+        .metric-list {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .metric-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .metric-list li {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: white;
+            border-left: 4px solid #3b82f6;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .metric-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-list li strong {
+            color: #1e3a8a;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .info-box h4 {
+            color: #1e3a8a;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .info-box p {
+            color: #374151;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .code-block {
+            background: #1f2937;
+            color: #10b981;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+
+        .benefit-item .icon {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 Guía ISO/IEC 25022:2016</h1>
+            <div class="subtitle">Medición de Calidad en Uso del Software</div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="reports/iso25022-report.html" class="nav-button">📊 Ver Reporte de Pruebas</a>
+            <a href="README.md" class="nav-button">📖 Documentación Técnica</a>
+        </div>
+
+        <div class="content">
+            <!-- Introducción -->
+            <div class="section">
+                <h2>🎯 ¿Qué es la ISO 25022?</h2>
+                <p>
+                    La norma <span class="highlight">ISO/IEC 25022:2016</span> es un estándar internacional que forma parte de la 
+                    familia SQuaRE (Systems and software Quality Requirements and Evaluation). Esta norma específica 
+                    proporciona un conjunto de métricas para <strong>medir la calidad en uso</strong> de productos de software.
+                </p>
+                <p>
+                    La calidad en uso se refiere al grado en que un producto o sistema puede ser utilizado por usuarios 
+                    específicos para alcanzar objetivos específicos con efectividad, eficiencia, ausencia de riesgo y 
+                    satisfacción en contextos de uso específicos.
+                </p>
+
+                <div class="info-box">
+                    <h4>💡 Diferencia Clave</h4>
+                    <p>
+                        Mientras que la <strong>ISO 25010</strong> define el modelo de calidad (características y subcaracterísticas), 
+                        la <strong>ISO 25022</strong> proporciona las métricas específicas para medirlas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Categorías -->
+            <div class="section">
+                <h2>📊 Características de Calidad en Uso</h2>
+                <p>
+                    La ISO 25022 define métricas para cinco características principales de calidad en uso. 
+                    Nuestro sistema de pruebas implementa cuatro de ellas:
+                </p>
+
+                <div class="category-grid">
+                    <div class="category-card">
+                        <div class="icon">🎯</div>
+                        <h4>Efectividad</h4>
+                        <p>
+                            Mide la exactitud e integridad con la que los usuarios logran objetivos específicos. 
+                            ¿Los usuarios pueden completar sus tareas correctamente?
+                        </p>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="icon">⚡</div>
+                        <h4>Eficiencia</h4>
+                        <p>
+                            Evalúa los recursos utilizados en relación con la efectividad alcanzada. 
+                            ¿El sistema utiliza recursos de manera óptima?
+                        </p>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="icon">😊</div>
+                        <h4>Satisfacción</h4>
+                        <p>
+                            Mide el grado en que se satisfacen las necesidades del usuario cuando se usa el producto. 
+                            ¿Los usuarios están contentos con el sistema?
+                        </p>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="icon">🛡️</div>
+                        <h4>Ausencia de Riesgo</h4>
+                        <p>
+                            Evalúa el grado de mitigación de riesgos potenciales para el negocio, la salud, o la privacidad. 
+                            ¿El sistema es seguro y confiable?
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Métricas Implementadas -->
+            <div class="section">
+                <h2>📏 Métricas Implementadas</h2>
+
+                <h3>🎯 Efectividad</h3>
+                <div class="metric-list">
+                    <ul>
+                        <li>
+                            <strong>Completitud de Tareas:</strong> Porcentaje de tareas que los usuarios completan correctamente.
+                            Target: ≥ 80%
+                        </li>
+                        <li>
+                            <strong>Efectividad de Funcionalidades:</strong> Precisión en el procesamiento de datos y operaciones.
+                            Target: ≥ 90%
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>⚡ Eficiencia</h3>
+                <div class="metric-list">
+                    <ul>
+                        <li>
+                            <strong>Tiempo de Respuesta:</strong> Tiempo promedio que toma completar operaciones principales.
+                            Target: < 1000 ms
+                        </li>
+                        <li>
+                            <strong>Eficiencia de Procesamiento:</strong> Número de operaciones completadas por segundo.
+                            Target: > 5 ops/s
+                        </li>
+                        <li>
+                            <strong>Utilización de Recursos:</strong> Eficiencia en el uso de ancho de banda y memoria.
+                            Target: < 5000 bytes/item
+                        </li>
+                        <li>
+                            <strong>Capacidad de Carga:</strong> Capacidad para manejar múltiples usuarios simultáneos.
+                            Target: ≥ 95%
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>😊 Satisfacción</h3>
+                <div class="metric-list">
+                    <ul>
+                        <li>
+                            <strong>Utilidad Percibida:</strong> Porcentaje de funcionalidades útiles disponibles.
+                            Target: ≥ 90%
+                        </li>
+                        <li>
+                            <strong>Confiabilidad Percibida:</strong> Consistencia en las respuestas del sistema.
+                            Target: 100%
+                        </li>
+                        <li>
+                            <strong>Facilidad de Uso:</strong> Facilidad para completar operaciones básicas sin ayuda.
+                            Target: ≥ 85%
+                        </li>
+                        <li>
+                            <strong>Completitud de Información:</strong> Grado de completitud de los datos proporcionados.
+                            Target: ≥ 80%
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>🛡️ Ausencia de Riesgo</h3>
+                <div class="metric-list">
+                    <ul>
+                        <li>
+                            <strong>Seguridad de Autenticación:</strong> Protección adecuada de endpoints que requieren autenticación.
+                            Target: 100%
+                        </li>
+                        <li>
+                            <strong>Validación de Entrada:</strong> Validación y sanitización apropiada de datos de entrada.
+                            Target: ≥ 80%
+                        </li>
+                        <li>
+                            <strong>Manejo de Errores:</strong> Manejo seguro de errores sin exponer información sensible.
+                            Target: 100%
+                        </li>
+                        <li>
+                            <strong>Disponibilidad del Sistema:</strong> Disponibilidad consistente ante múltiples peticiones.
+                            Target: ≥ 99%
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Beneficios -->
+            <div class="section">
+                <h2>✨ Beneficios de Aplicar ISO 25022</h2>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="icon">📈</div>
+                        <div>
+                            <strong>Mejora Continua:</strong> Identificación de áreas de mejora mediante métricas objetivas
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">🎯</div>
+                        <div>
+                            <strong>Objetivos Claros:</strong> Establecimiento de objetivos de calidad medibles y alcanzables
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">🤝</div>
+                        <div>
+                            <strong>Comunicación:</strong> Lenguaje común entre desarrolladores, QA y stakeholders
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">💰</div>
+                        <div>
+                            <strong>Reducción de Costos:</strong> Detección temprana de problemas de calidad
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">🏆</div>
+                        <div>
+                            <strong>Competitividad:</strong> Productos de mayor calidad que satisfacen a los usuarios
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">📊</div>
+                        <div>
+                            <strong>Trazabilidad:</strong> Seguimiento del progreso de calidad a lo largo del tiempo
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cómo Usar -->
+            <div class="section">
+                <h2>🚀 Cómo Usar Este Sistema de Pruebas</h2>
+
+                <h3>1. Requisitos Previos</h3>
+                <p>Asegúrate de tener el backend ejecutándose en <code>http://localhost:3000</code></p>
+
+                <h3>2. Ejecutar las Pruebas</h3>
+                <div class="code-block">
+cd iso25022-tests<br>
+npm install<br>
+npm test
+                </div>
+
+                <h3>3. Ver el Reporte</h3>
+                <div class="code-block">
+npm run test:html
+                </div>
+                <p>O simplemente abre el archivo <code>reports/iso25022-report.html</code> en tu navegador.</p>
+
+                <h3>4. Interpretar Resultados</h3>
+                <div class="metric-list">
+                    <ul>
+                        <li><strong>🟢 PASS:</strong> La métrica cumple con el objetivo establecido</li>
+                        <li><strong>🟡 WARN:</strong> La métrica está cerca del objetivo pero requiere atención</li>
+                        <li><strong>🔴 FAIL:</strong> La métrica no cumple con el objetivo y requiere mejoras</li>
+                        <li><strong>🟣 ERROR:</strong> Hubo un error al ejecutar la métrica</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>💡 Recomendación</h4>
+                    <p>
+                        Ejecuta estas pruebas regularmente (ej: semanalmente o antes de cada release) para 
+                        mantener un seguimiento continuo de la calidad de tu aplicación y detectar degradaciones 
+                        tempranamente.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Referencias -->
+            <div class="section">
+                <h2>📚 Referencias y Recursos</h2>
+                <div class="metric-list">
+                    <ul>
+                        <li>
+                            <strong>ISO/IEC 25022:2016:</strong> Measurement of quality in use 
+                            (Estándar oficial de ISO)
+                        </li>
+                        <li>
+                            <strong>ISO/IEC 25010:</strong> System and software quality models 
+                            (Define el modelo de calidad base)
+                        </li>
+                        <li>
+                            <strong>SQuaRE Series:</strong> Familia completa de estándares de calidad de software 
+                            (ISO/IEC 2500n)
+                        </li>
+                        <li>
+                            <strong>Documentación del Proyecto:</strong> Consulta el README.md en la carpeta 
+                            iso25022-tests para más detalles técnicos
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>📊 Sistema de Pruebas ISO 25022</h3>
+            <p style="margin-top: 10px; opacity: 0.8;">
+                Implementado para Tennis Store - Tienda de Sneakers Online
+            </p>
+            <p style="margin-top: 5px; font-size: 0.9em; opacity: 0.7;">
+                Basado en el estándar ISO/IEC 25022:2016 - Measurement of quality in use
+            </p>
+        </div>
+    </div>
+</body>
+</html>

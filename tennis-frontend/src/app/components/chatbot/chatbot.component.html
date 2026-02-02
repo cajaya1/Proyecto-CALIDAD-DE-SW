@@ -1,0 +1,51 @@
+<div class="chatbot-container">
+  <div class="chat-header">
+    <h2>🤖 Asistente Virtual</h2>
+    <p>¿Cómo puedo ayudarte?</p>
+  </div>
+
+  <div class="chat-messages" #messagesContainer>
+    <div *ngIf="messages.length === 0" class="empty-state">
+      <div class="welcome-message">
+        <h3>👋 ¡Hola! Bienvenido al Asistente Virtual</h3>
+        <p>Soy tu asistente personal de Sneakers Store. Puedo ayudarte con:</p>
+        <ul>
+          <li>🛍️ Información de productos y precios</li>
+          <li>📦 Estado de pedidos y envíos</li>
+          <li>🔄 Cambios y devoluciones</li>
+          <li>💳 Métodos de pago</li>
+          <li>❓ Cualquier otra consulta</li>
+        </ul>
+        <p><strong>Escribe tu pregunta abajo para comenzar</strong></p>
+      </div>
+    </div>
+
+    <div *ngFor="let msg of messages; let i = index" class="message-group">
+      <div class="user-message">
+        <span class="message-text">{{ msg.userMessage }}</span>
+        <span class="message-time">{{ msg.createdAt | date:'short' }}</span>
+      </div>
+      <div class="bot-message" [class.loading]="msg.isTemp">
+        <span class="intent-badge">{{ getIntentLabel(msg.intent) }}</span>
+        <div class="message-text" style="white-space: pre-line;">{{ msg.botResponse }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input
+      type="text"
+      [(ngModel)]="userMessage"
+      placeholder="Escribe tu pregunta aquí..."
+      (keyup.enter)="sendMessage()"
+      [disabled]="isLoading"
+    />
+    <button 
+      (click)="sendMessage()" 
+      [disabled]="isLoading || !userMessage.trim()"
+      class="send-btn"
+    >
+      {{ isLoading ? '⏳ Enviando...' : '📤 Enviar' }}
+    </button>
+  </div>
+</div>

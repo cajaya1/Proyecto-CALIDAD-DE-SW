@@ -1,0 +1,17 @@
+{
+  "cobertura": {
+    "icp": 86.14736521796253,
+    "func_coverage": 80.69727891156462,
+    "branch_coverage": 66.20957473898649,
+    "num_files": 20
+  },
+  "tests": {
+    "num_test_files": 13,
+    "test_directories": 2
+  },
+  "performance": {
+    "num_load_tests": 3,
+    "avg_response_time_ms": 180,
+    "throughput_rps": 50
+  }
+}

@@ -1,0 +1,135 @@
+<div class="reservations-container">
+  <div class="header">
+    <h1>📋 Mis Reservas</h1>
+    <button 
+      class="btn-primary"
+      (click)="showNewReservationForm = !showNewReservationForm"
+    >
+      {{ showNewReservationForm ? '❌ Cerrar' : '➕ Nueva Reserva' }}
+    </button>
+  </div>
+
+  <!-- Formulario de nueva reserva -->
+  <div *ngIf="showNewReservationForm" class="new-reservation-form">
+    <h3>Crear Nueva Reserva</h3>
+    <div class="form-group">
+      <label>Producto ID *</label>
+      <input 
+        type="number" 
+        [(ngModel)]="newReservation.productId" 
+        placeholder="Ingresa el ID del producto"
+      />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Cantidad *</label>
+        <input 
+          type="number" 
+          [(ngModel)]="newReservation.quantity" 
+          min="1"
+          placeholder="Cantidad"
+        />
+      </div>
+      <div class="form-group">
+        <label>Fecha de Reserva *</label>
+        <input 
+          type="date" 
+          [(ngModel)]="newReservation.reservationDate"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Notas (opcional)</label>
+      <textarea 
+        [(ngModel)]="newReservation.notes"
+        placeholder="Añade notas sobre tu reserva..."
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-success" (click)="createReservation()" [disabled]="isLoading">
+        {{ isLoading ? '⏳ Creando...' : '✅ Crear Reserva' }}
+      </button>
+      <button class="btn-secondary" (click)="resetForm()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters">
+    <select [(ngModel)]="selectedStatus" (change)="applyFilter()">
+      <option value="">Todos los estados</option>
+      <option value="pending">⏳ Pendiente</option>
+      <option value="confirmed">✅ Confirmada</option>
+      <option value="ready">📦 Lista</option>
+      <option value="picked_up">🎉 Recogida</option>
+      <option value="cancelled">❌ Cancelada</option>
+    </select>
+  </div>
+
+  <!-- Lista de reservas -->
+  <div *ngIf="isLoading" class="loading">
+    <p>⏳ Cargando reservas...</p>
+  </div>
+
+  <div *ngIf="!isLoading && filteredReservations.length > 0" class="reservations-list">
+    <div *ngFor="let reservation of filteredReservations" class="reservation-card">
+      <div class="card-header">
+        <h3>Reserva #{{ reservation.id }}</h3>
+        <span [ngStyle]="getStatusStyle(reservation.status)">
+          {{ statusLabels[reservation.status] }}
+        </span>
+      </div>
+
+      <div class="card-body">
+        <div class="info-row">
+          <span class="label">Producto:</span>
+          <span class="value">{{ reservation.Product?.name || 'N/A' }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Cantidad:</span>
+          <span class="value">{{ reservation.quantity }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Precio:</span>
+          <span class="value">${{ reservation.Product?.price || 0 }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Fecha de Reserva:</span>
+          <span class="value">{{ reservation.reservationDate | date:'dd/MM/yyyy' }}</span>
+        </div>
+
+        <div *ngIf="reservation.pickupDate" class="info-row">
+          <span class="label">Fecha de Recogida:</span>
+          <span class="value">{{ reservation.pickupDate | date:'dd/MM/yyyy' }}</span>
+        </div>
+
+        <div *ngIf="reservation.notes" class="info-row">
+          <span class="label">Notas:</span>
+          <span class="value">{{ reservation.notes }}</span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button 
+          *ngIf="reservation.status !== 'cancelled' && reservation.status !== 'picked_up'"
+          class="btn-danger"
+          (click)="cancelReservation(reservation.id)"
+        >
+          ❌ Cancelar Reserva
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && filteredReservations.length === 0" class="empty-state">
+    <p>📭 No tienes reservas</p>
+    <button class="btn-primary" (click)="showNewReservationForm = true">
+      Crea una nueva reserva
+    </button>
+  </div>
+</div>

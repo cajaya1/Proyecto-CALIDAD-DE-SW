@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte ISO 25022 - Tennis Store - Tienda de Sneakers Online (Actualizado 2026)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .timestamp {
+            font-size: 0.9em;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .summary-card .number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .summary-card .label {
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .summary-card.total .number { color: #667eea; }
+        .summary-card.pass .number { color: #10b981; }
+        .summary-card.warn .number { color: #f59e0b; }
+        .summary-card.fail .number { color: #ef4444; }
+        .summary-card.error .number { color: #8b5cf6; }
+
+        .content {
+            padding: 40px;
+        }
+
+        .category {
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .category-description {
+            padding: 20px 25px;
+            background: #f8f9fa;
+            color: #666;
+            font-style: italic;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .metrics {
+            padding: 25px;
+        }
+
+        .metric {
+            background: #f9fafb;
+            border-left: 5px solid #667eea;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .metric:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .metric.pass { border-left-color: #10b981; background: #f0fdf4; }
+        .metric.warn { border-left-color: #f59e0b; background: #fffbeb; }
+        .metric.fail { border-left-color: #ef4444; background: #fef2f2; }
+        .metric.error { border-left-color: #8b5cf6; background: #faf5ff; }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .metric-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .metric-status {
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-status.pass {
+            background: #10b981;
+            color: white;
+        }
+
+        .metric-status.warn {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .metric-status.fail {
+            background: #ef4444;
+            color: white;
+        }
+
+        .metric-status.error {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .metric-description {
+            color: #6b7280;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .metric-values {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .metric-value {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-value .label {
+            font-size: 0.85em;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .metric-value .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .metric-details {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .metric-details h4 {
+            color: #374151;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        .detail-table th {
+            background: #f3f4f6;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .detail-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            color: #4b5563;
+        }
+
+        .detail-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .detail-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .detail-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f9fafb;
+            border-radius: 5px;
+        }
+
+        .detail-item strong {
+            color: #374151;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .score-gauge {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #10b981 0deg,
+                #10b981 calc(var(--score) * 3.6deg),
+                #e5e7eb calc(var(--score) * 3.6deg),
+                #e5e7eb 360deg
+            );
+            position: relative;
+            margin: 10px;
+        }
+
+        .score-gauge::before {
+            content: attr(data-score) '%';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .metric:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Reporte ISO 25022</h1>
+            <div class="subtitle">Métricas de Calidad en Uso del Software</div>
+            <div class="subtitle">Tennis Store - Tienda de Sneakers Online (Actualizado 2026)</div>
+            <div class="timestamp">Generado: 19/1/2026, 12:24:39</div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card total">
+                <div class="number">14</div>
+                <div class="label">Total Métricas</div>
+            </div>
+            <div class="summary-card pass">
+                <div class="number">13</div>
+                <div class="label">Aprobadas</div>
+            </div>
+            <div class="summary-card warn">
+                <div class="number">1</div>
+                <div class="label">Advertencias</div>
+            </div>
+            <div class="summary-card fail">
+                <div class="number">0</div>
+                <div class="label">Fallidas</div>
+            </div>
+            <div class="summary-card error">
+                <div class="number">0</div>
+                <div class="label">Errores</div>
+            </div>
+        </div>
+
+        <div class="content">
+            
+      <div class="category">
+        <div class="category-header">
+          🎯 Efectividad (Effectiveness)
+        </div>
+        <div class="category-description">
+          Medición de la capacidad del sistema para permitir completar tareas con precisión
+        </div>
+        <div class="metrics">
+          
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Completitud de Tareas</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Porcentaje de tareas completadas exitosamente</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">85.71%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">≥ 80%</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Task</th><th>Status</th><th>Error</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>Obtener lista de productos</td><td>Completada</td><td>N/A</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Registro de usuario</td><td>Completada</td><td>N/A</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Login de usuario</td><td>Completada</td><td>N/A</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Agregar producto al carrito</td><td>Completada</td><td>N/A</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Crear orden</td><td>Fallida</td><td>Request failed with status code 500</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Chatbot - Enviar mensaje</td><td>Completada</td><td>N/A</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Obtener reseñas de producto</td><td>Completada</td><td>N/A</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Efectividad de Funcionalidades</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Precisión en el procesamiento de datos y operaciones</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">100.00%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">≥ 90%</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Test</th><th>Status</th><th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>Validación de autenticación</td><td>Correcto</td><td>Validación de autenticación funciona correctamente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Integridad de datos de productos</td><td>Correcto</td><td>Estructura de datos correcta</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Cálculo correcto de carrito</td><td>Correcto</td><td>Total calculado: 250, esperado: 250</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Validación de chatbot</td><td>Correcto</td><td>Chatbot responde correctamente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Sistema de reseñas</td><td>Correcto</td><td>Sistema de reseñas funcional</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+        </div>
+      </div>
+    
+      <div class="category">
+        <div class="category-header">
+          ⚡ Eficiencia (Efficiency)
+        </div>
+        <div class="category-description">
+          Medición de recursos utilizados en relación con la efectividad
+        </div>
+        <div class="metrics">
+          
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Tiempo de Respuesta Promedio</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Tiempo promedio de respuesta de operaciones principales</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">3.60 ms</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">< 1000 ms</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Operation</th><th>Time</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>Listar productos</td><td>2</td><td>Excelente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Obtener producto específico</td><td>1</td><td>Excelente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Verificar estado de API</td><td>1</td><td>Excelente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Consultar chatbot</td><td>9</td><td>Excelente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Obtener reseñas</td><td>5</td><td>Excelente</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Eficiencia de Procesamiento</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Capacidad de procesamiento del sistema (ops/seg)</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">416.67 ops/s</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">> 5 ops/s</div>
+          </div>
+        </div>
+        
+        <div class="metric-details">
+          <h4>Detalles:</h4>
+          
+            <div class="detail-item">
+              <strong>Total Requests:</strong> 10
+            </div>
+          
+            <div class="detail-item">
+              <strong>Successful Requests:</strong> 10
+            </div>
+          
+            <div class="detail-item">
+              <strong>Total Time:</strong> 24 ms
+            </div>
+          
+            <div class="detail-item">
+              <strong>Success Rate:</strong> 100.00%
+            </div>
+          
+        </div>
+      
+      </div>
+    
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Utilización de Recursos</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Eficiencia en el uso de ancho de banda</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">312.25 bytes/item</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">< 5000 bytes/item</div>
+          </div>
+        </div>
+        
+        <div class="metric-details">
+          <h4>Detalles:</h4>
+          
+            <div class="detail-item">
+              <strong>Total Response Size:</strong> 1249 bytes
+            </div>
+          
+            <div class="detail-item">
+              <strong>Item Count:</strong> 4
+            </div>
+          
+            <div class="detail-item">
+              <strong>Average Size Per Item:</strong> 312.25 bytes
+            </div>
+          
+        </div>
+      
+      </div>
+    
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Capacidad de Carga</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Capacidad para manejar usuarios concurrentes</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">100.00% éxito</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">≥ 95%</div>
+          </div>
+        </div>
+        
+        <div class="metric-details">
+          <h4>Detalles:</h4>
+          
+            <div class="detail-item">
+              <strong>Concurrent Users:</strong> 5
+            </div>
+          
+            <div class="detail-item">
+              <strong>Requests Per User:</strong> 3
+            </div>
+          
+            <div class="detail-item">
+              <strong>Total Requests:</strong> 15
+            </div>
+          
+            <div class="detail-item">
+              <strong>Successful Requests:</strong> 15
+            </div>
+          
+            <div class="detail-item">
+              <strong>Total Time:</strong> 19 ms
+            </div>
+          
+            <div class="detail-item">
+              <strong>Avg Time Per Request:</strong> 1.27 ms
+            </div>
+          
+        </div>
+      
+      </div>
+    
+        </div>
+      </div>
+    
+      <div class="category">
+        <div class="category-header">
+          😊 Satisfacción (Satisfaction)
+        </div>
+        <div class="category-description">
+          Medición del grado de satisfacción de las necesidades del usuario
+        </div>
+        <div class="metrics">
+          
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Utilidad Percibida</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Porcentaje de funcionalidades útiles disponibles</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">100.00%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">≥ 90%</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Feature</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>Autenticación de usuarios</td><td>Disponible</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Catálogo de productos</td><td>Disponible</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Gestión de carrito</td><td>Disponible</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Sistema de órdenes</td><td>Disponible</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Sistema de chatbot</td><td>Disponible</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Sistema de reseñas</td><td>Disponible</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Confiabilidad Percibida</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Consistencia de las respuestas del sistema</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">100.00%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">100%</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Run</th><th>Status</th><th>Item Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>1</td><td>Consistente</td><td>4</td>
+                  </tr>
+                
+                  <tr>
+                    <td>2</td><td>Consistente</td><td>4</td>
+                  </tr>
+                
+                  <tr>
+                    <td>3</td><td>Consistente</td><td>4</td>
+                  </tr>
+                
+                  <tr>
+                    <td>4</td><td>Consistente</td><td>4</td>
+                  </tr>
+                
+                  <tr>
+                    <td>5</td><td>Consistente</td><td>4</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Facilidad de Uso</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Facilidad para completar operaciones básicas</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">100.00%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">≥ 85%</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Operation</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>Consultar productos</td><td>Fácil de usar</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Buscar producto específico</td><td>Fácil de usar</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Verificar estructura de respuesta</td><td>Fácil de usar</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Completitud de Información</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Evaluación de la completitud de datos proporcionados</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">87.50%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">≥ 80%</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Field</th><th>Type</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>id</td><td>Requerido</td><td>Presente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>name</td><td>Requerido</td><td>Presente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>price</td><td>Requerido</td><td>Presente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>description</td><td>Requerido</td><td>Presente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>image</td><td>Opcional</td><td>Presente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>category</td><td>Opcional</td><td>Presente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>brand</td><td>Opcional</td><td>Ausente</td>
+                  </tr>
+                
+                  <tr>
+                    <td>stock</td><td>Opcional</td><td>Presente</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+        </div>
+      </div>
+    
+      <div class="category">
+        <div class="category-header">
+          🛡️ Ausencia de Riesgo (Freedom from Risk)
+        </div>
+        <div class="category-description">
+          Medición del grado de mitigación de riesgos potenciales
+        </div>
+        <div class="metrics">
+          
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Seguridad de Autenticación</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Protección de endpoints que requieren autenticación</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">100.00%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">100%</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Endpoint</th><th>Status</th><th>Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>Carrito</td><td>Protegido correctamente</td><td>401</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Órdenes</td><td>Protegido correctamente</td><td>401</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Crear orden</td><td>Protegido correctamente</td><td>401</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Perfil de usuario</td><td>Protegido correctamente</td><td>401</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Historial de chat</td><td>Protegido correctamente</td><td>401</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+      <div class="metric warn">
+        <div class="metric-header">
+          <div class="metric-name">Validación de Entrada</div>
+          <div class="metric-status warn">WARN</div>
+        </div>
+        <div class="metric-description">Validación y sanitización de datos de entrada</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">66.67%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">≥ 80%</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Test</th><th>Status</th><th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>Email inválido en registro</td><td>Protegido</td><td>Rechaza email inválido</td>
+                  </tr>
+                
+                  <tr>
+                    <td>Datos incompletos en registro</td><td>Vulnerable</td><td>Error inesperado</td>
+                  </tr>
+                
+                  <tr>
+                    <td>SQL Injection básica</td><td>Protegido</td><td>Protegido contra SQL injection básico</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Manejo de Errores</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Manejo seguro de errores sin exponer información sensible</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">100.00%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">100%</div>
+          </div>
+        </div>
+        
+          <div class="metric-details">
+            <h4>Detalles:</h4>
+            <table class="detail-table">
+              <thead>
+                <tr>
+                  <th>Test</th><th>Status</th><th>Http Status</th><th>Expose Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>Endpoint inexistente</td><td>Seguro</td><td>404</td><td>No</td>
+                  </tr>
+                
+                  <tr>
+                    <td>ID de producto inválido</td><td>Seguro</td><td>404</td><td>No</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+      </div>
+    
+      <div class="metric pass">
+        <div class="metric-header">
+          <div class="metric-name">Disponibilidad del Sistema</div>
+          <div class="metric-status pass">PASS</div>
+        </div>
+        <div class="metric-description">Disponibilidad del sistema ante múltiples peticiones</div>
+        <div class="metric-values">
+          <div class="metric-value">
+            <div class="label">Valor Obtenido</div>
+            <div class="value">100.00%</div>
+          </div>
+          <div class="metric-value">
+            <div class="label">Objetivo</div>
+            <div class="value">≥ 99%</div>
+          </div>
+        </div>
+        
+        <div class="metric-details">
+          <h4>Detalles:</h4>
+          
+            <div class="detail-item">
+              <strong>Total Attempts:</strong> 10
+            </div>
+          
+            <div class="detail-item">
+              <strong>Successful Attempts:</strong> 10
+            </div>
+          
+            <div class="detail-item">
+              <strong>Samples:</strong> [{"attempt":1,"status":"Disponible","responseTime":"2 ms"},{"attempt":2,"status":"Disponible","responseTime":"1 ms"},{"attempt":3,"status":"Disponible","responseTime":"1 ms"},{"attempt":4,"status":"Disponible","responseTime":"2 ms"},{"attempt":5,"status":"Disponible","responseTime":"3 ms"}]
+            </div>
+          
+        </div>
+      
+      </div>
+    
+        </div>
+      </div>
+    
+        </div>
+
+        <div class="footer">
+            <p><strong>ISO/IEC 25022:2016</strong> - Measurement of quality in use</p>
+            <p>Estándar internacional para la medición de calidad en uso de productos de software</p>
+            <p style="margin-top: 10px; opacity: 0.8;">
+                Categorías evaluadas: Efectividad, Eficiencia, Satisfacción, Ausencia de Riesgo
+            </p>
+        </div>
+    </div>
+</body>
+</html>
