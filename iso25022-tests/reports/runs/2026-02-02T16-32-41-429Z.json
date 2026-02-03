@@ -1,0 +1,464 @@
+{
+  "runId": "2026-02-02T16-32-41-429Z",
+  "timestamp": "2026-02-02T16:32:39.355Z",
+  "apiUrl": "http://localhost:3000/api",
+  "successRate": 92.86,
+  "reportHtml": "iso25022-report-2026-02-02T16-32-41-429Z.html",
+  "reportData": {
+    "timestamp": "2026-02-02T16:32:39.355Z",
+    "projectName": "Tennis Store - Tienda de Sneakers Online (Actualizado 2026)",
+    "summary": {
+      "totalMetrics": 14,
+      "passedMetrics": 13,
+      "warnedMetrics": 1,
+      "failedMetrics": 0,
+      "errorMetrics": 0
+    },
+    "categories": [
+      {
+        "category": "Efectividad (Effectiveness)",
+        "description": "Medición de la capacidad del sistema para permitir completar tareas con precisión",
+        "metrics": [
+          {
+            "name": "Completitud de Tareas",
+            "description": "Porcentaje de tareas completadas exitosamente",
+            "value": "85.71%",
+            "rawValue": 85.71428571428571,
+            "target": "≥ 80%",
+            "status": "PASS",
+            "details": [
+              {
+                "task": "Obtener lista de productos",
+                "status": "Completada",
+                "error": null
+              },
+              {
+                "task": "Registro de usuario",
+                "status": "Completada",
+                "error": null
+              },
+              {
+                "task": "Login de usuario",
+                "status": "Completada",
+                "error": null
+              },
+              {
+                "task": "Agregar producto al carrito",
+                "status": "Completada",
+                "error": null
+              },
+              {
+                "task": "Crear orden",
+                "status": "Fallida",
+                "error": "Request failed with status code 500"
+              },
+              {
+                "task": "Chatbot - Enviar mensaje",
+                "status": "Completada",
+                "error": null
+              },
+              {
+                "task": "Obtener reseñas de producto",
+                "status": "Completada",
+                "error": null
+              }
+            ]
+          },
+          {
+            "name": "Efectividad de Funcionalidades",
+            "description": "Precisión en el procesamiento de datos y operaciones",
+            "value": "100.00%",
+            "rawValue": 100,
+            "target": "≥ 90%",
+            "status": "PASS",
+            "details": [
+              {
+                "test": "Validación de autenticación",
+                "status": "Correcto",
+                "details": "Validación de autenticación funciona correctamente"
+              },
+              {
+                "test": "Integridad de datos de productos",
+                "status": "Correcto",
+                "details": "Estructura de datos correcta"
+              },
+              {
+                "test": "Cálculo correcto de carrito",
+                "status": "Correcto",
+                "details": "Total calculado: 250, esperado: 250"
+              },
+              {
+                "test": "Validación de chatbot",
+                "status": "Correcto",
+                "details": "Chatbot responde correctamente"
+              },
+              {
+                "test": "Sistema de reseñas",
+                "status": "Correcto",
+                "details": "Sistema de reseñas funcional"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Eficiencia (Efficiency)",
+        "description": "Medición de recursos utilizados en relación con la efectividad",
+        "metrics": [
+          {
+            "name": "Tiempo de Respuesta Promedio",
+            "description": "Tiempo promedio de respuesta de operaciones principales",
+            "value": "2.80 ms",
+            "rawValue": 2.8,
+            "target": "< 1000 ms",
+            "status": "PASS",
+            "details": [
+              {
+                "operation": "Listar productos",
+                "time": 2,
+                "status": "Excelente"
+              },
+              {
+                "operation": "Obtener producto específico",
+                "time": 3,
+                "status": "Excelente"
+              },
+              {
+                "operation": "Verificar estado de API",
+                "time": 1,
+                "status": "Excelente"
+              },
+              {
+                "operation": "Consultar chatbot",
+                "time": 5,
+                "status": "Excelente"
+              },
+              {
+                "operation": "Obtener reseñas",
+                "time": 3,
+                "status": "Excelente"
+              }
+            ]
+          },
+          {
+            "name": "Eficiencia de Procesamiento",
+            "description": "Capacidad de procesamiento del sistema (ops/seg)",
+            "value": "303.03 ops/s",
+            "rawValue": 303.03030303030306,
+            "target": "> 5 ops/s",
+            "status": "PASS",
+            "details": {
+              "totalRequests": 10,
+              "successfulRequests": 10,
+              "totalTime": "33 ms",
+              "successRate": "100.00%"
+            }
+          },
+          {
+            "name": "Utilización de Recursos",
+            "description": "Eficiencia en el uso de ancho de banda",
+            "value": "312.25 bytes/item",
+            "rawValue": 312.25,
+            "target": "< 5000 bytes/item",
+            "status": "PASS",
+            "details": {
+              "totalResponseSize": "1249 bytes",
+              "itemCount": 4,
+              "averageSizePerItem": "312.25 bytes"
+            }
+          },
+          {
+            "name": "Capacidad de Carga",
+            "description": "Capacidad para manejar usuarios concurrentes",
+            "value": "100.00% éxito",
+            "rawValue": 100,
+            "target": "≥ 95%",
+            "status": "PASS",
+            "details": {
+              "concurrentUsers": 5,
+              "requestsPerUser": 3,
+              "totalRequests": 15,
+              "successfulRequests": 15,
+              "totalTime": "60 ms",
+              "avgTimePerRequest": "4.00 ms"
+            }
+          }
+        ]
+      },
+      {
+        "category": "Satisfacción (Satisfaction)",
+        "description": "Medición del grado de satisfacción de las necesidades del usuario",
+        "metrics": [
+          {
+            "name": "Utilidad Percibida",
+            "description": "Porcentaje de funcionalidades útiles disponibles",
+            "value": "100.00%",
+            "rawValue": 100,
+            "target": "≥ 90%",
+            "status": "PASS",
+            "details": [
+              {
+                "feature": "Autenticación de usuarios",
+                "status": "Disponible"
+              },
+              {
+                "feature": "Catálogo de productos",
+                "status": "Disponible"
+              },
+              {
+                "feature": "Gestión de carrito",
+                "status": "Disponible"
+              },
+              {
+                "feature": "Sistema de órdenes",
+                "status": "Disponible"
+              },
+              {
+                "feature": "Sistema de chatbot",
+                "status": "Disponible"
+              },
+              {
+                "feature": "Sistema de reseñas",
+                "status": "Disponible"
+              }
+            ]
+          },
+          {
+            "name": "Confiabilidad Percibida",
+            "description": "Consistencia de las respuestas del sistema",
+            "value": "100.00%",
+            "rawValue": 100,
+            "target": "100%",
+            "status": "PASS",
+            "details": [
+              {
+                "run": 1,
+                "status": "Consistente",
+                "itemCount": 4
+              },
+              {
+                "run": 2,
+                "status": "Consistente",
+                "itemCount": 4
+              },
+              {
+                "run": 3,
+                "status": "Consistente",
+                "itemCount": 4
+              },
+              {
+                "run": 4,
+                "status": "Consistente",
+                "itemCount": 4
+              },
+              {
+                "run": 5,
+                "status": "Consistente",
+                "itemCount": 4
+              }
+            ]
+          },
+          {
+            "name": "Facilidad de Uso",
+            "description": "Facilidad para completar operaciones básicas",
+            "value": "100.00%",
+            "rawValue": 100,
+            "target": "≥ 85%",
+            "status": "PASS",
+            "details": [
+              {
+                "operation": "Consultar productos",
+                "status": "Fácil de usar"
+              },
+              {
+                "operation": "Buscar producto específico",
+                "status": "Fácil de usar"
+              },
+              {
+                "operation": "Verificar estructura de respuesta",
+                "status": "Fácil de usar"
+              }
+            ]
+          },
+          {
+            "name": "Completitud de Información",
+            "description": "Evaluación de la completitud de datos proporcionados",
+            "value": "87.50%",
+            "rawValue": 87.5,
+            "target": "≥ 80%",
+            "status": "PASS",
+            "details": [
+              {
+                "field": "id",
+                "type": "Requerido",
+                "status": "Presente"
+              },
+              {
+                "field": "name",
+                "type": "Requerido",
+                "status": "Presente"
+              },
+              {
+                "field": "price",
+                "type": "Requerido",
+                "status": "Presente"
+              },
+              {
+                "field": "description",
+                "type": "Requerido",
+                "status": "Presente"
+              },
+              {
+                "field": "image",
+                "type": "Opcional",
+                "status": "Presente"
+              },
+              {
+                "field": "category",
+                "type": "Opcional",
+                "status": "Presente"
+              },
+              {
+                "field": "brand",
+                "type": "Opcional",
+                "status": "Ausente"
+              },
+              {
+                "field": "stock",
+                "type": "Opcional",
+                "status": "Presente"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Ausencia de Riesgo (Freedom from Risk)",
+        "description": "Medición del grado de mitigación de riesgos potenciales",
+        "metrics": [
+          {
+            "name": "Seguridad de Autenticación",
+            "description": "Protección de endpoints que requieren autenticación",
+            "value": "100.00%",
+            "rawValue": 100,
+            "target": "100%",
+            "status": "PASS",
+            "details": [
+              {
+                "endpoint": "Carrito",
+                "status": "Protegido correctamente",
+                "code": 401
+              },
+              {
+                "endpoint": "Órdenes",
+                "status": "Protegido correctamente",
+                "code": 401
+              },
+              {
+                "endpoint": "Crear orden",
+                "status": "Protegido correctamente",
+                "code": 401
+              },
+              {
+                "endpoint": "Perfil de usuario",
+                "status": "Protegido correctamente",
+                "code": 401
+              },
+              {
+                "endpoint": "Historial de chat",
+                "status": "Protegido correctamente",
+                "code": 401
+              }
+            ]
+          },
+          {
+            "name": "Validación de Entrada",
+            "description": "Validación y sanitización de datos de entrada",
+            "value": "66.67%",
+            "rawValue": 66.66666666666666,
+            "target": "≥ 80%",
+            "status": "WARN",
+            "details": [
+              {
+                "test": "Email inválido en registro",
+                "status": "Protegido",
+                "details": "Rechaza email inválido"
+              },
+              {
+                "test": "Datos incompletos en registro",
+                "status": "Vulnerable",
+                "details": "Error inesperado"
+              },
+              {
+                "test": "SQL Injection básica",
+                "status": "Protegido",
+                "details": "Protegido contra SQL injection básico"
+              }
+            ]
+          },
+          {
+            "name": "Manejo de Errores",
+            "description": "Manejo seguro de errores sin exponer información sensible",
+            "value": "100.00%",
+            "rawValue": 100,
+            "target": "100%",
+            "status": "PASS",
+            "details": [
+              {
+                "test": "Endpoint inexistente",
+                "status": "Seguro",
+                "httpStatus": 404,
+                "exposeInfo": "No"
+              },
+              {
+                "test": "ID de producto inválido",
+                "status": "Seguro",
+                "httpStatus": 404,
+                "exposeInfo": "No"
+              }
+            ]
+          },
+          {
+            "name": "Disponibilidad del Sistema",
+            "description": "Disponibilidad del sistema ante múltiples peticiones",
+            "value": "100.00%",
+            "rawValue": 100,
+            "target": "≥ 99%",
+            "status": "PASS",
+            "details": {
+              "totalAttempts": 10,
+              "successfulAttempts": 10,
+              "samples": [
+                {
+                  "attempt": 1,
+                  "status": "Disponible",
+                  "responseTime": "1 ms"
+                },
+                {
+                  "attempt": 2,
+                  "status": "Disponible",
+                  "responseTime": "2 ms"
+                },
+                {
+                  "attempt": 3,
+                  "status": "Disponible",
+                  "responseTime": "3 ms"
+                },
+                {
+                  "attempt": 4,
+                  "status": "Disponible",
+                  "responseTime": "2 ms"
+                },
+                {
+                  "attempt": 5,
+                  "status": "Disponible",
+                  "responseTime": "5 ms"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

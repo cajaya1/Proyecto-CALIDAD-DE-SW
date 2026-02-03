@@ -1,0 +1,94 @@
+{
+  "runs": [
+    {
+      "runId": "2026-02-02T16-33-15-627Z",
+      "timestamp": "2026-02-02T16:33:13.708Z",
+      "apiUrl": "http://localhost:3000/api",
+      "successRate": 92.86,
+      "summary": {
+        "totalMetrics": 14,
+        "passedMetrics": 13,
+        "warnedMetrics": 1,
+        "failedMetrics": 0,
+        "errorMetrics": 0
+      },
+      "reportHtml": "iso25022-report-2026-02-02T16-33-15-627Z.html",
+      "runJson": "runs/2026-02-02T16-33-15-627Z.json"
+    },
+    {
+      "runId": "2026-02-02T16-32-41-429Z",
+      "timestamp": "2026-02-02T16:32:39.355Z",
+      "apiUrl": "http://localhost:3000/api",
+      "successRate": 92.86,
+      "summary": {
+        "totalMetrics": 14,
+        "passedMetrics": 13,
+        "warnedMetrics": 1,
+        "failedMetrics": 0,
+        "errorMetrics": 0
+      },
+      "reportHtml": "iso25022-report-2026-02-02T16-32-41-429Z.html",
+      "runJson": "runs/2026-02-02T16-32-41-429Z.json"
+    },
+    {
+      "runId": "2026-02-02T16-31-03-478Z",
+      "timestamp": "2026-02-02T16:31:01.021Z",
+      "apiUrl": "http://localhost:3000/api",
+      "successRate": 92.86,
+      "summary": {
+        "totalMetrics": 14,
+        "passedMetrics": 13,
+        "warnedMetrics": 1,
+        "failedMetrics": 0,
+        "errorMetrics": 0
+      },
+      "reportHtml": "iso25022-report-2026-02-02T16-31-03-478Z.html",
+      "runJson": "runs/2026-02-02T16-31-03-478Z.json"
+    },
+    {
+      "runId": "2026-02-02T16-27-21-722Z",
+      "timestamp": "2026-02-02T16:27:20.376Z",
+      "apiUrl": "http://localhost:3000/api",
+      "successRate": 7.14,
+      "summary": {
+        "totalMetrics": 14,
+        "passedMetrics": 1,
+        "warnedMetrics": 1,
+        "failedMetrics": 10,
+        "errorMetrics": 2
+      },
+      "reportHtml": "iso25022-report-2026-02-02T16-27-21-722Z.html",
+      "runJson": "runs/2026-02-02T16-27-21-722Z.json"
+    },
+    {
+      "runId": "2026-02-02T16-26-57-724Z",
+      "timestamp": "2026-02-02T16:26:56.370Z",
+      "apiUrl": "http://localhost:3000/api",
+      "successRate": 7.14,
+      "summary": {
+        "totalMetrics": 14,
+        "passedMetrics": 1,
+        "warnedMetrics": 1,
+        "failedMetrics": 10,
+        "errorMetrics": 2
+      },
+      "reportHtml": "iso25022-report-2026-02-02T16-26-57-724Z.html",
+      "runJson": "runs/2026-02-02T16-26-57-724Z.json"
+    },
+    {
+      "runId": "2026-02-02T16-25-52-364Z",
+      "timestamp": "2026-02-02T16:25:50.999Z",
+      "apiUrl": "http://localhost:3000/api",
+      "successRate": 7.14,
+      "summary": {
+        "totalMetrics": 14,
+        "passedMetrics": 1,
+        "warnedMetrics": 1,
+        "failedMetrics": 10,
+        "errorMetrics": 2
+      },
+      "reportHtml": "iso25022-report-2026-02-02T16-25-52-364Z.html",
+      "runJson": "runs/2026-02-02T16-25-52-364Z.json"
+    }
+  ]
+}

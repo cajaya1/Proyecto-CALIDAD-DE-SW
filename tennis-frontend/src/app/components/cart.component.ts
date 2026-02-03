@@ -592,7 +592,24 @@ export class CartComponent implements OnInit {
         this.cartItems = items;
       },
       error: (error) => {
-        this.notificationService.networkError();
+        if (error?.status === 401 || error?.status === 403) {
+          this.authService.logout();
+          this.notificationService.showWarning(
+            'Tu sesión expiró o no es válida. Inicia sesión nuevamente.',
+            '🔐 Sesión requerida'
+          );
+          this.router.navigate(['/login']);
+          return;
+        }
+
+        if (error?.status === 0) {
+          this.notificationService.networkError();
+        } else {
+          this.notificationService.showError(
+            'No se pudo cargar el carrito. Intenta nuevamente.',
+            '❌ Error'
+          );
+        }
       }
     });
   }
@@ -692,7 +709,7 @@ export class CartComponent implements OnInit {
         ...this.form,
         total_amount: this.getTotal(),
         items: this.cartItems.map(item => ({
-          product_id: item.product_id,
+          product_id: item.product_id ?? item.productId,
           quantity: item.quantity,
           price: this.getItemPrice(item),
           size: item.size
@@ -710,8 +727,16 @@ export class CartComponent implements OnInit {
               '¡Pago completado!'
             );
             
-            // Clear cart
-            this.cartItems = [];
+            // Limpiar carrito también en backend y actualizar contador
+            this.cartService.clearCart().subscribe({
+              next: () => {
+                this.cartItems = [];
+              },
+              error: () => {
+                // Si falla el clear remoto, igual vaciamos UI para no bloquear al usuario
+                this.cartItems = [];
+              }
+            });
             
             // Reset form
             this.form = {
@@ -757,23 +782,20 @@ export class CartComponent implements OnInit {
     // Confirmar directamente sin doble notificación
     if (window.confirm('¿Estás seguro de que quieres vaciar todo el carrito? Esta acción no se puede deshacer.')) {
       this.loadingItemId = 'clearing';
-      const token = localStorage.getItem('token');
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-      this.http.delete(`${environment.API_URL}/api/cart`, { headers })
-        .subscribe({
-          next: () => {
-            setTimeout(() => {
-              this.cartItems = [];
-              this.loadingItemId = null;
-              this.notificationService.cartCleared();
-            }, 1000); // Simular tiempo de procesamiento
-          },
-          error: (error) => {
+      this.cartService.clearCart().subscribe({
+        next: () => {
+          setTimeout(() => {
+            this.cartItems = [];
             this.loadingItemId = null;
-            this.notificationService.cartClearError();
-          }
-        });
+            this.notificationService.cartCleared();
+          }, 500);
+        },
+        error: () => {
+          this.loadingItemId = null;
+          this.notificationService.cartClearError();
+        }
+      });
     }
   }
 

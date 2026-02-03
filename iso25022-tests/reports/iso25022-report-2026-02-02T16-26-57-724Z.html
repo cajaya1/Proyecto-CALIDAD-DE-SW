@@ -395,106 +395,6 @@
             text-decoration: underline;
           }
 
-          .trends {
-            margin-bottom: 50px;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          }
-
-          .trends-header {
-            background: linear-gradient(135deg, #0f172a 0%, #1f2937 100%);
-            color: white;
-            padding: 22px 25px;
-            font-size: 1.2em;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-          }
-
-          .trends-header small {
-            font-weight: 500;
-            opacity: 0.85;
-          }
-
-          .trends-body {
-            padding: 20px 25px;
-            background: #f8fafc;
-          }
-
-          .trends-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 18px;
-          }
-
-          .chart-card {
-            background: white;
-            border-radius: 12px;
-            padding: 16px;
-            border: 1px solid #e5e7eb;
-          }
-
-          .chart-title {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 10px;
-          }
-
-          .chart-title h3 {
-            font-size: 1.05em;
-            color: #111827;
-          }
-
-          .chart-title span {
-            font-size: 0.85em;
-            color: #6b7280;
-          }
-
-          .chart-wrap {
-            width: 100%;
-          }
-
-          canvas.chart {
-            width: 100%;
-            height: 220px;
-            display: block;
-            background: #ffffff;
-            border-radius: 10px;
-          }
-
-          .chart-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px 14px;
-            margin-top: 10px;
-            font-size: 0.85em;
-            color: #374151;
-          }
-
-          .legend-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-          }
-
-          .legend-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            display: inline-block;
-          }
-
-          .dot-pass { background: #10b981; }
-          .dot-warn { background: #f59e0b; }
-          .dot-fail { background: #ef4444; }
-          .dot-error { background: #8b5cf6; }
-
         @media print {
             body {
                 background: white;
@@ -517,7 +417,7 @@
             <h1>📊 Reporte ISO 25022</h1>
             <div class="subtitle">Métricas de Calidad en Uso del Software</div>
             <div class="subtitle">Tennis Store - Tienda de Sneakers Online (Actualizado 2026)</div>
-            <div class="timestamp">Generado: 2/2/2026, 11:33:13</div>
+            <div class="timestamp">Generado: 2/2/2026, 11:26:56</div>
         </div>
 
         <div class="summary">
@@ -526,7 +426,7 @@
                 <div class="label">Total Métricas</div>
             </div>
             <div class="summary-card pass">
-                <div class="number">13</div>
+                <div class="number">1</div>
                 <div class="label">Aprobadas</div>
             </div>
             <div class="summary-card warn">
@@ -534,11 +434,11 @@
                 <div class="label">Advertencias</div>
             </div>
             <div class="summary-card fail">
-                <div class="number">0</div>
+                <div class="number">10</div>
                 <div class="label">Fallidas</div>
             </div>
             <div class="summary-card error">
-                <div class="number">0</div>
+                <div class="number">2</div>
                 <div class="label">Errores</div>
             </div>
         </div>
@@ -548,7 +448,7 @@
       <div class="history">
         <div class="history-header">
           <div>🗂️ Historial de ejecuciones</div>
-          <small>Últimas 6 de 6</small>
+          <small>Últimas 2 de 2</small>
         </div>
         <div class="history-body">
           <table class="history-table">
@@ -566,50 +466,6 @@
             </thead>
             <tbody>
               
-                  <tr>
-                    <td>2/2/2026, 11:33:13</td>
-                    <td title="http://localhost:3000/api">http://localhost:3000/api</td>
-                    <td><span class="badge pass">92.86%</span></td>
-                    <td>13</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="history-link"><a href="iso25022-report-2026-02-02T16-33-15-627Z.html" target="_blank" rel="noopener">Abrir</a></td>
-                  </tr>
-                
-                  <tr>
-                    <td>2/2/2026, 11:32:39</td>
-                    <td title="http://localhost:3000/api">http://localhost:3000/api</td>
-                    <td><span class="badge pass">92.86%</span></td>
-                    <td>13</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="history-link"><a href="iso25022-report-2026-02-02T16-32-41-429Z.html" target="_blank" rel="noopener">Abrir</a></td>
-                  </tr>
-                
-                  <tr>
-                    <td>2/2/2026, 11:31:01</td>
-                    <td title="http://localhost:3000/api">http://localhost:3000/api</td>
-                    <td><span class="badge pass">92.86%</span></td>
-                    <td>13</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="history-link"><a href="iso25022-report-2026-02-02T16-31-03-478Z.html" target="_blank" rel="noopener">Abrir</a></td>
-                  </tr>
-                
-                  <tr>
-                    <td>2/2/2026, 11:27:20</td>
-                    <td title="http://localhost:3000/api">http://localhost:3000/api</td>
-                    <td><span class="badge fail">7.14%</span></td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>10</td>
-                    <td>2</td>
-                    <td class="history-link"><a href="iso25022-report-2026-02-02T16-27-21-722Z.html" target="_blank" rel="noopener">Abrir</a></td>
-                  </tr>
-                
                   <tr>
                     <td>2/2/2026, 11:26:56</td>
                     <td title="http://localhost:3000/api">http://localhost:3000/api</td>
@@ -637,267 +493,6 @@
         </div>
       </div>
     
-          
-      <div class="trends">
-        <div class="trends-header">
-          <div>📈 Tendencias históricas</div>
-          <small>Últimos 6 runs</small>
-        </div>
-        <div class="trends-body">
-          <div class="trends-grid">
-            <div class="chart-card">
-              <div class="chart-title">
-                <h3>% de éxito por ejecución</h3>
-                <span>Línea</span>
-              </div>
-              <div class="chart-wrap">
-                <canvas class="chart" id="chart-success" height="220"></canvas>
-              </div>
-            </div>
-            <div class="chart-card">
-              <div class="chart-title">
-                <h3>Distribución de estados</h3>
-                <span>Barras apiladas (PASS/WARN/FAIL/ERROR)</span>
-              </div>
-              <div class="chart-wrap">
-                <canvas class="chart" id="chart-status" height="220"></canvas>
-              </div>
-              <div class="chart-legend">
-                <span class="legend-item"><span class="legend-dot dot-pass"></span>PASS</span>
-                <span class="legend-item"><span class="legend-dot dot-warn"></span>WARN</span>
-                <span class="legend-item"><span class="legend-dot dot-fail"></span>FAIL</span>
-                <span class="legend-item"><span class="legend-dot dot-error"></span>ERROR</span>
-              </div>
-            </div>
-          </div>
-          <script type="application/json" id="trend-data">[{"runId":"2026-02-02T16-25-52-364Z","timestamp":"2026-02-02T16:25:50.999Z","apiUrl":"http://localhost:3000/api","successRate":7.14,"pass":1,"warn":1,"fail":10,"error":2,"total":14},{"runId":"2026-02-02T16-26-57-724Z","timestamp":"2026-02-02T16:26:56.370Z","apiUrl":"http://localhost:3000/api","successRate":7.14,"pass":1,"warn":1,"fail":10,"error":2,"total":14},{"runId":"2026-02-02T16-27-21-722Z","timestamp":"2026-02-02T16:27:20.376Z","apiUrl":"http://localhost:3000/api","successRate":7.14,"pass":1,"warn":1,"fail":10,"error":2,"total":14},{"runId":"2026-02-02T16-31-03-478Z","timestamp":"2026-02-02T16:31:01.021Z","apiUrl":"http://localhost:3000/api","successRate":92.86,"pass":13,"warn":1,"fail":0,"error":0,"total":14},{"runId":"2026-02-02T16-32-41-429Z","timestamp":"2026-02-02T16:32:39.355Z","apiUrl":"http://localhost:3000/api","successRate":92.86,"pass":13,"warn":1,"fail":0,"error":0,"total":14},{"runId":"2026-02-02T16-33-15-627Z","timestamp":"2026-02-02T16:33:13.708Z","apiUrl":"http://localhost:3000/api","successRate":92.86,"pass":13,"warn":1,"fail":0,"error":0,"total":14}]</script>
-          <script>
-            (function() {
-              function getTrendData() {
-                try {
-                  var el = document.getElementById('trend-data');
-                  if (!el) return [];
-                  return JSON.parse(el.textContent || '[]');
-                } catch (e) {
-                  return [];
-                }
-              }
-
-              function setupCanvas(canvas) {
-                var ctx = canvas.getContext('2d');
-                var dpr = window.devicePixelRatio || 1;
-                var rect = canvas.getBoundingClientRect();
-                var width = Math.max(300, rect.width);
-                var height = canvas.height || 220;
-                canvas.width = Math.floor(width * dpr);
-                canvas.height = Math.floor(height * dpr);
-                // Evitar acumulación de escala si re-renderizamos
-                if (typeof ctx.setTransform === 'function') {
-                  ctx.setTransform(1, 0, 0, 1, 0, 0);
-                }
-                ctx.scale(dpr, dpr);
-                return { ctx: ctx, width: width, height: height };
-              }
-
-              function drawGrid(ctx, width, height, padding) {
-                ctx.save();
-                ctx.strokeStyle = '#e5e7eb';
-                ctx.lineWidth = 1;
-                ctx.setLineDash([4, 4]);
-                var lines = 4;
-                for (var i = 0; i <= lines; i++) {
-                  var y = padding.top + (i * (height - padding.top - padding.bottom) / lines);
-                  ctx.beginPath();
-                  ctx.moveTo(padding.left, y);
-                  ctx.lineTo(width - padding.right, y);
-                  ctx.stroke();
-                }
-                ctx.restore();
-              }
-
-              function drawAxesLabels(ctx, width, height, padding, minY, maxY, formatter) {
-                ctx.save();
-                ctx.fillStyle = '#6b7280';
-                ctx.font = '12px Segoe UI, Tahoma, sans-serif';
-                var lines = 4;
-                for (var i = 0; i <= lines; i++) {
-                  var value = maxY - (i * (maxY - minY) / lines);
-                  var y = padding.top + (i * (height - padding.top - padding.bottom) / lines);
-                  ctx.fillText(formatter(value), 8, y + 4);
-                }
-                ctx.restore();
-              }
-
-              function drawLineChart(canvasId, data) {
-                var canvas = document.getElementById(canvasId);
-                if (!canvas) return;
-                var s = setupCanvas(canvas);
-                var ctx = s.ctx;
-                var width = s.width;
-                var height = s.height;
-                ctx.clearRect(0, 0, width, height);
-
-                var padding = { top: 12, right: 12, bottom: 26, left: 44 };
-                drawGrid(ctx, width, height, padding);
-
-                var values = data.map(function(d) {
-                  return Number.isFinite(d.successRate) ? d.successRate : 0;
-                });
-                var minY = 0;
-                var maxY = 100;
-                drawAxesLabels(ctx, width, height, padding, minY, maxY, function(v) { return Math.round(v) + '%'; });
-
-                var plotW = width - padding.left - padding.right;
-                var plotH = height - padding.top - padding.bottom;
-                var n = Math.max(1, values.length);
-
-                function x(i) {
-                  if (n === 1) return padding.left + plotW / 2;
-                  return padding.left + (i * plotW / (n - 1));
-                }
-                function y(v) {
-                  return padding.top + ((maxY - v) * plotH / (maxY - minY));
-                }
-
-                // Línea
-                ctx.save();
-                ctx.strokeStyle = '#2563eb';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                for (var i = 0; i < values.length; i++) {
-                  var xv = x(i);
-                  var yv = y(values[i]);
-                  if (i === 0) ctx.moveTo(xv, yv);
-                  else ctx.lineTo(xv, yv);
-                }
-                ctx.stroke();
-                ctx.restore();
-
-                // Puntos
-                ctx.save();
-                for (var j = 0; j < values.length; j++) {
-                  var xv2 = x(j);
-                  var yv2 = y(values[j]);
-                  var color = values[j] >= 80 ? '#10b981' : values[j] >= 50 ? '#f59e0b' : '#ef4444';
-                  ctx.fillStyle = color;
-                  ctx.beginPath();
-                  ctx.arc(xv2, yv2, 4, 0, Math.PI * 2);
-                  ctx.fill();
-                }
-                ctx.restore();
-
-                // Etiquetas del eje X (primera y última)
-                ctx.save();
-                ctx.fillStyle = '#6b7280';
-                ctx.font = '12px Segoe UI, Tahoma, sans-serif';
-                if (data.length >= 1) {
-                  var first = data[0].timestamp ? new Date(data[0].timestamp).toLocaleDateString('es-ES') : '';
-                  var last = data[data.length - 1].timestamp ? new Date(data[data.length - 1].timestamp).toLocaleDateString('es-ES') : '';
-                  ctx.fillText(first, padding.left, height - 8);
-                  var lastW = ctx.measureText(last).width;
-                  ctx.fillText(last, width - padding.right - lastW, height - 8);
-                }
-                ctx.restore();
-              }
-
-              function drawStackedBars(canvasId, data) {
-                var canvas = document.getElementById(canvasId);
-                if (!canvas) return;
-                var s = setupCanvas(canvas);
-                var ctx = s.ctx;
-                var width = s.width;
-                var height = s.height;
-                ctx.clearRect(0, 0, width, height);
-
-                var padding = { top: 12, right: 12, bottom: 26, left: 44 };
-                drawGrid(ctx, width, height, padding);
-
-                // Eje Y: total métricas
-                var maxTotal = 0;
-                for (var i = 0; i < data.length; i++) {
-                  maxTotal = Math.max(maxTotal, data[i].total || (data[i].pass + data[i].warn + data[i].fail + data[i].error));
-                }
-                maxTotal = Math.max(1, maxTotal);
-                drawAxesLabels(ctx, width, height, padding, 0, maxTotal, function(v) { return String(Math.round(v)); });
-
-                var plotW = width - padding.left - padding.right;
-                var plotH = height - padding.top - padding.bottom;
-                var n = Math.max(1, data.length);
-                var gap = 6;
-                var barW = Math.max(8, (plotW - gap * (n - 1)) / n);
-
-                function x(i) {
-                  return padding.left + i * (barW + gap);
-                }
-                function y(v) {
-                  return padding.top + ((maxTotal - v) * plotH / maxTotal);
-                }
-
-                var colors = {
-                  pass: '#10b981',
-                  warn: '#f59e0b',
-                  fail: '#ef4444',
-                  error: '#8b5cf6'
-                };
-
-                for (var j = 0; j < data.length; j++) {
-                  var d = data[j];
-                  var total = d.total || (d.pass + d.warn + d.fail + d.error);
-                  if (!total) total = 1;
-                  var x0 = x(j);
-                  var base = 0;
-                  var segments = [
-                    { key: 'pass', value: d.pass || 0 },
-                    { key: 'warn', value: d.warn || 0 },
-                    { key: 'fail', value: d.fail || 0 },
-                    { key: 'error', value: d.error || 0 }
-                  ];
-
-                  for (var k = 0; k < segments.length; k++) {
-                    var seg = segments[k];
-                    if (seg.value <= 0) continue;
-                    var y1 = y(base + seg.value);
-                    var y0 = y(base);
-                    var h = Math.max(0, y0 - y1);
-                    ctx.fillStyle = colors[seg.key];
-                    ctx.fillRect(x0, y1, barW, h);
-                    base += seg.value;
-                  }
-                }
-
-                // Etiquetas del eje X (primera y última)
-                ctx.save();
-                ctx.fillStyle = '#6b7280';
-                ctx.font = '12px Segoe UI, Tahoma, sans-serif';
-                if (data.length >= 1) {
-                  var first = data[0].timestamp ? new Date(data[0].timestamp).toLocaleDateString('es-ES') : '';
-                  var last = data[data.length - 1].timestamp ? new Date(data[data.length - 1].timestamp).toLocaleDateString('es-ES') : '';
-                  ctx.fillText(first, padding.left, height - 8);
-                  var lastW = ctx.measureText(last).width;
-                  ctx.fillText(last, width - padding.right - lastW, height - 8);
-                }
-                ctx.restore();
-              }
-
-              function renderAll() {
-                var data = getTrendData();
-                if (!data || data.length < 2) return;
-                drawLineChart('chart-success', data);
-                drawStackedBars('chart-status', data);
-              }
-
-              // Render inicial y en resize
-              renderAll();
-              var resizeTimer;
-              window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(renderAll, 150);
-              });
-            })();
-          </script>
-        </div>
-      </div>
-    
             
       <div class="category">
         <div class="category-header">
@@ -908,16 +503,16 @@
         </div>
         <div class="metrics">
           
-      <div class="metric pass">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Completitud de Tareas</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Porcentaje de tareas completadas exitosamente</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">85.71%</div>
+            <div class="value">0.00%</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -936,31 +531,31 @@
               <tbody>
                 
                   <tr>
-                    <td>Obtener lista de productos</td><td>Completada</td><td>N/A</td>
+                    <td>Obtener lista de productos</td><td>Fallida</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Registro de usuario</td><td>Completada</td><td>N/A</td>
+                    <td>Registro de usuario</td><td>Fallida</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Login de usuario</td><td>Completada</td><td>N/A</td>
+                    <td>Login de usuario</td><td>Fallida</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Agregar producto al carrito</td><td>Completada</td><td>N/A</td>
+                    <td>Agregar producto al carrito</td><td>Fallida</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Crear orden</td><td>Fallida</td><td>Request failed with status code 500</td>
+                    <td>Crear orden</td><td>Fallida</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Chatbot - Enviar mensaje</td><td>Completada</td><td>N/A</td>
+                    <td>Chatbot - Enviar mensaje</td><td>Fallida</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Obtener reseñas de producto</td><td>Completada</td><td>N/A</td>
+                    <td>Obtener reseñas de producto</td><td>Fallida</td><td>Error</td>
                   </tr>
                 
               </tbody>
@@ -969,16 +564,16 @@
         
       </div>
     
-      <div class="metric pass">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Efectividad de Funcionalidades</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Precisión en el procesamiento de datos y operaciones</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">100.00%</div>
+            <div class="value">20.00%</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -997,11 +592,11 @@
               <tbody>
                 
                   <tr>
-                    <td>Validación de autenticación</td><td>Correcto</td><td>Validación de autenticación funciona correctamente</td>
+                    <td>Validación de autenticación</td><td>Incorrecto</td><td>Error inesperado en validación</td>
                   </tr>
                 
                   <tr>
-                    <td>Integridad de datos de productos</td><td>Correcto</td><td>Estructura de datos correcta</td>
+                    <td>Integridad de datos de productos</td><td>Incorrecto</td><td>Error</td>
                   </tr>
                 
                   <tr>
@@ -1009,11 +604,11 @@
                   </tr>
                 
                   <tr>
-                    <td>Validación de chatbot</td><td>Correcto</td><td>Chatbot responde correctamente</td>
+                    <td>Validación de chatbot</td><td>Incorrecto</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Sistema de reseñas</td><td>Correcto</td><td>Sistema de reseñas funcional</td>
+                    <td>Sistema de reseñas</td><td>Incorrecto</td><td>Error</td>
                   </tr>
                 
               </tbody>
@@ -1043,7 +638,7 @@
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">2.80 ms</div>
+            <div class="value">0.00 ms</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1056,29 +651,29 @@
             <table class="detail-table">
               <thead>
                 <tr>
-                  <th>Operation</th><th>Time</th><th>Status</th>
+                  <th>Operation</th><th>Time</th><th>Status</th><th>Error</th>
                 </tr>
               </thead>
               <tbody>
                 
                   <tr>
-                    <td>Listar productos</td><td>2</td><td>Excelente</td>
+                    <td>Listar productos</td><td>N/A</td><td>Sin respuesta</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Obtener producto específico</td><td>3</td><td>Excelente</td>
+                    <td>Obtener producto específico</td><td>N/A</td><td>Sin respuesta</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Verificar estado de API</td><td>1</td><td>Excelente</td>
+                    <td>Verificar estado de API</td><td>N/A</td><td>Sin respuesta</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Consultar chatbot</td><td>5</td><td>Excelente</td>
+                    <td>Consultar chatbot</td><td>N/A</td><td>Sin respuesta</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Obtener reseñas</td><td>3</td><td>Excelente</td>
+                    <td>Obtener reseñas</td><td>N/A</td><td>Sin respuesta</td><td>Error</td>
                   </tr>
                 
               </tbody>
@@ -1087,16 +682,16 @@
         
       </div>
     
-      <div class="metric pass">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Eficiencia de Procesamiento</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Capacidad de procesamiento del sistema (ops/seg)</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">434.78 ops/s</div>
+            <div class="value">0.00 ops/s</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1112,31 +707,31 @@
             </div>
           
             <div class="detail-item">
-              <strong>Successful Requests:</strong> 10
+              <strong>Successful Requests:</strong> 0
             </div>
           
             <div class="detail-item">
-              <strong>Total Time:</strong> 23 ms
+              <strong>Total Time:</strong> 13 ms
             </div>
           
             <div class="detail-item">
-              <strong>Success Rate:</strong> 100.00%
+              <strong>Success Rate:</strong> 0.00%
             </div>
           
         </div>
       
       </div>
     
-      <div class="metric pass">
+      <div class="metric error">
         <div class="metric-header">
           <div class="metric-name">Utilización de Recursos</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status error">ERROR</div>
         </div>
         <div class="metric-description">Eficiencia en el uso de ancho de banda</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">312.25 bytes/item</div>
+            <div class="value">N/A</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1148,31 +743,23 @@
           <h4>Detalles:</h4>
           
             <div class="detail-item">
-              <strong>Total Response Size:</strong> 1249 bytes
-            </div>
-          
-            <div class="detail-item">
-              <strong>Item Count:</strong> 4
-            </div>
-          
-            <div class="detail-item">
-              <strong>Average Size Per Item:</strong> 312.25 bytes
+              <strong>Error:</strong> Error
             </div>
           
         </div>
       
       </div>
     
-      <div class="metric pass">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Capacidad de Carga</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Capacidad para manejar usuarios concurrentes</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">100.00% éxito</div>
+            <div class="value">0.00% éxito</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1196,15 +783,15 @@
             </div>
           
             <div class="detail-item">
-              <strong>Successful Requests:</strong> 15
+              <strong>Successful Requests:</strong> 0
             </div>
           
             <div class="detail-item">
-              <strong>Total Time:</strong> 25 ms
+              <strong>Total Time:</strong> 23 ms
             </div>
           
             <div class="detail-item">
-              <strong>Avg Time Per Request:</strong> 1.67 ms
+              <strong>Avg Time Per Request:</strong> 1.53 ms
             </div>
           
         </div>
@@ -1223,16 +810,16 @@
         </div>
         <div class="metrics">
           
-      <div class="metric pass">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Utilidad Percibida</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Porcentaje de funcionalidades útiles disponibles</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">100.00%</div>
+            <div class="value">0.00%</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1251,27 +838,27 @@
               <tbody>
                 
                   <tr>
-                    <td>Autenticación de usuarios</td><td>Disponible</td>
+                    <td>Autenticación de usuarios</td><td>No disponible</td>
                   </tr>
                 
                   <tr>
-                    <td>Catálogo de productos</td><td>Disponible</td>
+                    <td>Catálogo de productos</td><td>No disponible</td>
                   </tr>
                 
                   <tr>
-                    <td>Gestión de carrito</td><td>Disponible</td>
+                    <td>Gestión de carrito</td><td>No disponible</td>
                   </tr>
                 
                   <tr>
-                    <td>Sistema de órdenes</td><td>Disponible</td>
+                    <td>Sistema de órdenes</td><td>No disponible</td>
                   </tr>
                 
                   <tr>
-                    <td>Sistema de chatbot</td><td>Disponible</td>
+                    <td>Sistema de chatbot</td><td>No disponible</td>
                   </tr>
                 
                   <tr>
-                    <td>Sistema de reseñas</td><td>Disponible</td>
+                    <td>Sistema de reseñas</td><td>No disponible</td>
                   </tr>
                 
               </tbody>
@@ -1280,16 +867,16 @@
         
       </div>
     
-      <div class="metric pass">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Confiabilidad Percibida</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Consistencia de las respuestas del sistema</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">100.00%</div>
+            <div class="value">0.00%</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1302,29 +889,29 @@
             <table class="detail-table">
               <thead>
                 <tr>
-                  <th>Run</th><th>Status</th><th>Item Count</th>
+                  <th>Run</th><th>Status</th><th>Error</th>
                 </tr>
               </thead>
               <tbody>
                 
                   <tr>
-                    <td>1</td><td>Consistente</td><td>4</td>
+                    <td>1</td><td>Error</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>2</td><td>Consistente</td><td>4</td>
+                    <td>2</td><td>Error</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>3</td><td>Consistente</td><td>4</td>
+                    <td>3</td><td>Error</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>4</td><td>Consistente</td><td>4</td>
+                    <td>4</td><td>Error</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>5</td><td>Consistente</td><td>4</td>
+                    <td>5</td><td>Error</td><td>Error</td>
                   </tr>
                 
               </tbody>
@@ -1333,16 +920,16 @@
         
       </div>
     
-      <div class="metric pass">
+      <div class="metric warn">
         <div class="metric-header">
           <div class="metric-name">Facilidad de Uso</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status warn">WARN</div>
         </div>
         <div class="metric-description">Facilidad para completar operaciones básicas</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">100.00%</div>
+            <div class="value">0.00%</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1355,21 +942,21 @@
             <table class="detail-table">
               <thead>
                 <tr>
-                  <th>Operation</th><th>Status</th>
+                  <th>Operation</th><th>Status</th><th>Error</th>
                 </tr>
               </thead>
               <tbody>
                 
                   <tr>
-                    <td>Consultar productos</td><td>Fácil de usar</td>
+                    <td>Consultar productos</td><td>Error</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Buscar producto específico</td><td>Fácil de usar</td>
+                    <td>Buscar producto específico</td><td>Difícil</td><td>N/A</td>
                   </tr>
                 
                   <tr>
-                    <td>Verificar estructura de respuesta</td><td>Fácil de usar</td>
+                    <td>Verificar estructura de respuesta</td><td>Error</td><td>Error</td>
                   </tr>
                 
               </tbody>
@@ -1378,16 +965,16 @@
         
       </div>
     
-      <div class="metric pass">
+      <div class="metric error">
         <div class="metric-header">
           <div class="metric-name">Completitud de Información</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status error">ERROR</div>
         </div>
         <div class="metric-description">Evaluación de la completitud de datos proporcionados</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">87.50%</div>
+            <div class="value">N/A</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1395,52 +982,15 @@
           </div>
         </div>
         
-          <div class="metric-details">
-            <h4>Detalles:</h4>
-            <table class="detail-table">
-              <thead>
-                <tr>
-                  <th>Field</th><th>Type</th><th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-                  <tr>
-                    <td>id</td><td>Requerido</td><td>Presente</td>
-                  </tr>
-                
-                  <tr>
-                    <td>name</td><td>Requerido</td><td>Presente</td>
-                  </tr>
-                
-                  <tr>
-                    <td>price</td><td>Requerido</td><td>Presente</td>
-                  </tr>
-                
-                  <tr>
-                    <td>description</td><td>Requerido</td><td>Presente</td>
-                  </tr>
-                
-                  <tr>
-                    <td>image</td><td>Opcional</td><td>Presente</td>
-                  </tr>
-                
-                  <tr>
-                    <td>category</td><td>Opcional</td><td>Presente</td>
-                  </tr>
-                
-                  <tr>
-                    <td>brand</td><td>Opcional</td><td>Ausente</td>
-                  </tr>
-                
-                  <tr>
-                    <td>stock</td><td>Opcional</td><td>Presente</td>
-                  </tr>
-                
-              </tbody>
-            </table>
-          </div>
-        
+        <div class="metric-details">
+          <h4>Detalles:</h4>
+          
+            <div class="detail-item">
+              <strong>Error:</strong> Error
+            </div>
+          
+        </div>
+      
       </div>
     
         </div>
@@ -1455,16 +1005,16 @@
         </div>
         <div class="metrics">
           
-      <div class="metric pass">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Seguridad de Autenticación</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Protección de endpoints que requieren autenticación</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">100.00%</div>
+            <div class="value">0.00%</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1477,29 +1027,29 @@
             <table class="detail-table">
               <thead>
                 <tr>
-                  <th>Endpoint</th><th>Status</th><th>Code</th>
+                  <th>Endpoint</th><th>Status</th><th>Error</th>
                 </tr>
               </thead>
               <tbody>
                 
                   <tr>
-                    <td>Carrito</td><td>Protegido correctamente</td><td>401</td>
+                    <td>Carrito</td><td>Error en verificación</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Órdenes</td><td>Protegido correctamente</td><td>401</td>
+                    <td>Órdenes</td><td>Error en verificación</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Crear orden</td><td>Protegido correctamente</td><td>401</td>
+                    <td>Crear orden</td><td>Error en verificación</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Perfil de usuario</td><td>Protegido correctamente</td><td>401</td>
+                    <td>Perfil de usuario</td><td>Error en verificación</td><td>Error</td>
                   </tr>
                 
                   <tr>
-                    <td>Historial de chat</td><td>Protegido correctamente</td><td>401</td>
+                    <td>Historial de chat</td><td>Error en verificación</td><td>Error</td>
                   </tr>
                 
               </tbody>
@@ -1508,16 +1058,16 @@
         
       </div>
     
-      <div class="metric warn">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Validación de Entrada</div>
-          <div class="metric-status warn">WARN</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Validación y sanitización de datos de entrada</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">66.67%</div>
+            <div class="value">33.33%</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1536,7 +1086,7 @@
               <tbody>
                 
                   <tr>
-                    <td>Email inválido en registro</td><td>Protegido</td><td>Rechaza email inválido</td>
+                    <td>Email inválido en registro</td><td>Vulnerable</td><td>Error inesperado</td>
                   </tr>
                 
                   <tr>
@@ -1544,7 +1094,7 @@
                   </tr>
                 
                   <tr>
-                    <td>SQL Injection básica</td><td>Protegido</td><td>Protegido contra SQL injection básico</td>
+                    <td>SQL Injection básica</td><td>Protegido</td><td>Protegido</td>
                   </tr>
                 
               </tbody>
@@ -1553,16 +1103,16 @@
         
       </div>
     
-      <div class="metric pass">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Manejo de Errores</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Manejo seguro de errores sin exponer información sensible</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">100.00%</div>
+            <div class="value">50.00%</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1581,11 +1131,11 @@
               <tbody>
                 
                   <tr>
-                    <td>Endpoint inexistente</td><td>Seguro</td><td>404</td><td>No</td>
+                    <td>Endpoint inexistente</td><td>Inseguro</td><td>error</td><td>No</td>
                   </tr>
                 
                   <tr>
-                    <td>ID de producto inválido</td><td>Seguro</td><td>404</td><td>No</td>
+                    <td>ID de producto inválido</td><td>Seguro</td><td>handled</td><td>No</td>
                   </tr>
                 
               </tbody>
@@ -1594,16 +1144,16 @@
         
       </div>
     
-      <div class="metric pass">
+      <div class="metric fail">
         <div class="metric-header">
           <div class="metric-name">Disponibilidad del Sistema</div>
-          <div class="metric-status pass">PASS</div>
+          <div class="metric-status fail">FAIL</div>
         </div>
         <div class="metric-description">Disponibilidad del sistema ante múltiples peticiones</div>
         <div class="metric-values">
           <div class="metric-value">
             <div class="label">Valor Obtenido</div>
-            <div class="value">100.00%</div>
+            <div class="value">0.00%</div>
           </div>
           <div class="metric-value">
             <div class="label">Objetivo</div>
@@ -1619,11 +1169,11 @@
             </div>
           
             <div class="detail-item">
-              <strong>Successful Attempts:</strong> 10
+              <strong>Successful Attempts:</strong> 0
             </div>
           
             <div class="detail-item">
-              <strong>Samples:</strong> [{"attempt":1,"status":"Disponible","responseTime":"1 ms"},{"attempt":2,"status":"Disponible","responseTime":"2 ms"},{"attempt":3,"status":"Disponible","responseTime":"2 ms"},{"attempt":4,"status":"Disponible","responseTime":"4 ms"},{"attempt":5,"status":"Disponible","responseTime":"2 ms"}]
+              <strong>Samples:</strong> [{"attempt":1,"status":"Error","error":"Error"},{"attempt":2,"status":"Error","error":"Error"},{"attempt":3,"status":"Error","error":"Error"},{"attempt":4,"status":"Error","error":"Error"},{"attempt":5,"status":"Error","error":"Error"}]
             </div>
           
         </div>

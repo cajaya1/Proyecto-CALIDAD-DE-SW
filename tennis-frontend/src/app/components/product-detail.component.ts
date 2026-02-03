@@ -368,7 +368,22 @@ export class ProductDetailComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error adding to cart:', error);
-        this.notificationService.showError('No se pudo agregar el producto al carrito. Intenta nuevamente.');
+        if (error?.status === 401 || error?.status === 403) {
+          this.authService.logout();
+          this.notificationService.showWarning(
+            'Tu sesión expiró o no es válida. Inicia sesión nuevamente para agregar al carrito.',
+            '🔐 Sesión requerida'
+          );
+          this.isAddingToCart = false;
+          this.router.navigate(['/login']);
+          return;
+        }
+
+        if (error?.status === 0) {
+          this.notificationService.networkError();
+        } else {
+          this.notificationService.showError('No se pudo agregar el producto al carrito. Intenta nuevamente.');
+        }
         this.isAddingToCart = false;
       }
     });

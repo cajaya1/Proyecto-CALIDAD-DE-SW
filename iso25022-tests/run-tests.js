@@ -9,6 +9,31 @@ const SatisfactionMetrics = require('./metrics/satisfaction-metrics');
 const FreedomFromRiskMetrics = require('./metrics/freedom-from-risk-metrics');
 const HTMLReportGenerator = require('./report-generator');
 const path = require('path');
+const fs = require('fs');
+
+function createRunId(date = new Date()) {
+  // Windows-friendly filename (no ':' or '.')
+  return date
+    .toISOString()
+    .replace(/[:.]/g, '-')
+    .replace(/Z$/, 'Z');
+}
+
+function safeReadJSON(filePath, fallback) {
+  try {
+    if (!fs.existsSync(filePath)) return fallback;
+    const raw = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return fallback;
+  }
+}
+
+function ensureDir(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
 
 async function runISO25022Tests() {
   console.log('\n╔══════════════════════════════════════════════════════════╗');
@@ -59,38 +84,95 @@ async function runISO25022Tests() {
     reportGenerator.addCategory(riskResults);
     displayCategoryResults(riskResults);
 
-    // Generar reporte HTML
+    // Generar reporte HTML + registro histórico
     console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('📄 GENERANDO REPORTE HTML');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
-    
-    const reportPath = path.join(__dirname, 'reports', 'iso25022-report.html');
-    reportGenerator.saveReport(reportPath);
+
+    const reportsDir = path.join(__dirname, 'reports');
+    const runsDir = path.join(reportsDir, 'runs');
+    ensureDir(reportsDir);
+    ensureDir(runsDir);
+
+    const runId = createRunId(new Date());
+    const latestReportPath = path.join(reportsDir, 'iso25022-report.html');
+    const runReportFileName = `iso25022-report-${runId}.html`;
+    const runReportPath = path.join(reportsDir, runReportFileName);
+
+    const summary = reportGenerator.reportData.summary;
+    const successRate = summary.totalMetrics > 0
+      ? Number(((summary.passedMetrics / summary.totalMetrics) * 100).toFixed(2))
+      : 0;
+
+    const runJsonPath = path.join(runsDir, `${runId}.json`);
+    fs.writeFileSync(
+      runJsonPath,
+      JSON.stringify(
+        {
+          runId,
+          timestamp: reportGenerator.reportData.timestamp,
+          apiUrl: baseURL,
+          successRate,
+          reportHtml: runReportFileName,
+          reportData: reportGenerator.reportData
+        },
+        null,
+        2
+      ),
+      'utf8'
+    );
+
+    const historyPath = path.join(reportsDir, 'history.json');
+    const history = safeReadJSON(historyPath, { runs: [] });
+    const nextRun = {
+      runId,
+      timestamp: reportGenerator.reportData.timestamp,
+      apiUrl: baseURL,
+      successRate,
+      summary,
+      reportHtml: runReportFileName,
+      runJson: `runs/${runId}.json`
+    };
+
+    const updatedRuns = [nextRun, ...(Array.isArray(history.runs) ? history.runs : [])]
+      .filter(r => r && r.runId)
+      .slice(0, 50);
+
+    fs.writeFileSync(historyPath, JSON.stringify({ runs: updatedRuns }, null, 2), 'utf8');
+
+    // Inyectar historial al reporte HTML
+    reportGenerator.setHistory(updatedRuns);
+
+    // Guardar un HTML “por ejecución” y el “último” (puntero)
+    reportGenerator.saveReport(runReportPath);
+    reportGenerator.saveReport(latestReportPath);
 
     // Resumen final
     console.log('\n╔══════════════════════════════════════════════════════════╗');
     console.log('║                     RESUMEN FINAL                        ║');
     console.log('╚══════════════════════════════════════════════════════════╝\n');
     
-    const summary = reportGenerator.reportData.summary;
+    // Resumen final
+    // (nota: summary ya fue calculado arriba para la persistencia)
     console.log(`📊 Total de métricas evaluadas: ${summary.totalMetrics}`);
     console.log(`✅ Aprobadas (PASS):            ${summary.passedMetrics}`);
     console.log(`⚠️  Advertencias (WARN):        ${summary.warnedMetrics}`);
     console.log(`❌ Fallidas (FAIL):             ${summary.failedMetrics}`);
     console.log(`🔴 Errores (ERROR):             ${summary.errorMetrics}`);
-    
-    const successRate = summary.totalMetrics > 0 
-      ? ((summary.passedMetrics / summary.totalMetrics) * 100).toFixed(2)
-      : 0;
+
     console.log(`\n🎯 Tasa de éxito: ${successRate}%`);
-    
-    console.log(`\n📁 Reporte guardado en: ${reportPath}`);
+
+    console.log(`\n📁 Reporte (último) guardado en: ${latestReportPath}`);
+    console.log(`📁 Reporte (run) guardado en:    ${runReportPath}`);
+    console.log(`🗂️  Historial guardado en:        ${historyPath}`);
     console.log('\n💡 Para ver el reporte, ejecuta: npm run test:html');
     console.log('   O abre directamente el archivo HTML en tu navegador.\n');
 
     return {
       success: true,
-      reportPath,
+      reportPath: latestReportPath,
+      runReportPath,
+      runId,
       summary
     };
 
