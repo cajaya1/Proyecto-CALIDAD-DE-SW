@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd tennis-frontend && npm install && npm run build",
+  "outputDirectory": "tennis-frontend/dist/tennis-frontend/browser",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
