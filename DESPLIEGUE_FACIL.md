@@ -10,6 +10,7 @@
 6. Click "Deploy"
 7. Espera a que termine (2-5 minutos)
 8. **Copia la URL** que te genera (ej: `https://tennis-frontend-xyz.vercel.app`)
+9. 
 
 ---
 
