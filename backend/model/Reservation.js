@@ -114,6 +114,41 @@ class Reservation {
     const [rows] = await pool.execute(`SELECT COUNT(*) AS total FROM reservations ${whereSql};`, params);
     return rows[0]?.total || 0;
   }
+
+  static async update(id, data) {
+    const updates = [];
+    const params = [];
+
+    if (data.status !== undefined) {
+      updates.push('status = ?');
+      params.push(data.status);
+    }
+    if (data.pickupDate !== undefined) {
+      updates.push('pickup_date = ?');
+      params.push(data.pickupDate);
+    }
+    if (data.notes !== undefined) {
+      updates.push('notes = ?');
+      params.push(data.notes);
+    }
+
+    if (updates.length === 0) {
+      throw new Error('No hay datos para actualizar');
+    }
+
+    params.push(id);
+
+    const [result] = await pool.execute(
+      `UPDATE reservations SET ${updates.join(', ')} WHERE id = ?`,
+      params
+    );
+
+    if (result.affectedRows === 0) {
+      throw new Error('Reserva no encontrada');
+    }
+
+    return this.findByPk(id, { includeProduct: true });
+  }
 }
 
 module.exports = Reservation;

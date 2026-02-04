@@ -159,16 +159,16 @@ class ReservationController {
         return res.status(404).json({ error: 'Reserva no encontrada' });
       }
 
-      reservation.status = status;
+      const updateData = { status };
       if (pickupDate) {
-        reservation.pickupDate = new Date(pickupDate);
+        updateData.pickupDate = new Date(pickupDate);
       }
-      await reservation.save();
+      const updatedReservation = await Reservation.update(reservationId, updateData);
 
       res.status(200).json({
         success: true,
         message: 'Reserva actualizada correctamente',
-        data: reservation
+        data: updatedReservation
       });
     } catch (error) {
       res.status(500).json({
@@ -192,13 +192,12 @@ class ReservationController {
         return res.status(400).json({ error: 'La reserva ya fue cancelada' });
       }
 
-      reservation.status = 'cancelled';
-      await reservation.save();
+      const updatedReservation = await Reservation.update(reservationId, { status: 'cancelled' });
 
       res.status(200).json({
         success: true,
         message: 'Reserva cancelada correctamente',
-        data: reservation
+        data: updatedReservation
       });
     } catch (error) {
       res.status(500).json({
