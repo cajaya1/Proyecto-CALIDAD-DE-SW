@@ -90,13 +90,12 @@ class ChatbotController {
         return res.status(404).json({ error: 'Mensaje no encontrado' });
       }
 
-      chatMessage.resolved = true;
-      await chatMessage.save();
+      const updatedMessage = await Chatbot.update(chatId, { resolved: true });
 
       res.status(200).json({
         success: true,
         message: 'Mensaje marcado como resuelto',
-        data: chatMessage
+        data: updatedMessage
       });
     } catch (error) {
       res.status(500).json({

@@ -67,6 +67,37 @@ class Chatbot {
     );
     return rows[0]?.total || 0;
   }
+
+  static async update(id, data) {
+    const updates = [];
+    const params = [];
+
+    if (data.resolved !== undefined) {
+      updates.push('resolved = ?');
+      params.push(data.resolved);
+    }
+    if (data.intent !== undefined) {
+      updates.push('intent = ?');
+      params.push(data.intent);
+    }
+
+    if (updates.length === 0) {
+      throw new Error('No hay datos para actualizar');
+    }
+
+    params.push(id);
+
+    const [result] = await pool.execute(
+      `UPDATE chatbots SET ${updates.join(', ')} WHERE id = ?`,
+      params
+    );
+
+    if (result.affectedRows === 0) {
+      throw new Error('Mensaje no encontrado');
+    }
+
+    return this.findByPk(id);
+  }
 }
 
 module.exports = Chatbot;
