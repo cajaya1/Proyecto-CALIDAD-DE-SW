@@ -26,15 +26,15 @@ CREATE TABLE IF NOT EXISTS products (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- Carts
-CREATE TABLE IF NOT EXISTS carts (
+-- Cart
+CREATE TABLE IF NOT EXISTS cart (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   product_id INT NOT NULL,
   quantity INT NOT NULL DEFAULT 1,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_carts_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  CONSTRAINT fk_carts_product FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+  CONSTRAINT fk_cart_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT fk_cart_product FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Orders (simplificado)
